@@ -4,23 +4,31 @@ import { db } from "@/db/index"
 import { /* authSchema, */ businessSchema } from "@/db/schema"
 
 export const polar = new Polar({
-  accessToken: process.env.POLAR_SECRET_KEY!,
+  accessToken: process.env.POLAR_ACCESS_TOKEN!,
   server: process.env.NODE_ENV === "production" ? "production" : "sandbox",
 })
 
 export async function createCheckoutSession(userId: string, userEmail: string) {
   try {
-    // Note: This is a placeholder implementation
-    // The actual Polar API structure may differ
-    const checkoutSession = {
-      id: `checkout_${Date.now()}`,
-      url: `${process.env.NEXT_PUBLIC_APP_URL}/payment/mock-checkout`,
-      userId,
-      userEmail,
-      status: "pending",
-    }
+    const checkoutSession = await polar.checkouts.create({
+      customerBillingAddress: {
+        country: "US",
+      },
+      products: [process.env.POLAR_PRODUCT_ID!],
+      successUrl: `${process.env.NEXT_PUBLIC_APP_URL}/payment/success?checkout_id={CHECKOUT_ID}`,
+      externalCustomerId: userId,
+      metadata: {
+        userId,
+        userEmail,
+      },
+    })
 
-    return checkoutSession
+    return {
+      id: checkoutSession.id,
+      url: checkoutSession.url,
+      clientSecret: checkoutSession.clientSecret,
+      expiresAt: checkoutSession.expiresAt,
+    }
   } catch (error) {
     console.error("Failed to create checkout session:", error)
     throw new Error("Payment session creation failed")

@@ -98,26 +98,32 @@ export function MagneticElement({
 }
 
 export function FloatingElements({ count = 5, className }: { count?: number; className?: string }) {
-  const elements = Array.from({ length: count }, (_, i) => (
-    <motion.div
-      key={i}
-      className="absolute h-2 w-2 rounded-full bg-blue-500/30"
-      animate={{
-        x: [0, 100, 0],
-        y: [0, -100, 0],
-        opacity: [0.3, 0.8, 0.3],
-      }}
-      transition={{
-        duration: 3 + Math.random() * 2,
-        repeat: Infinity,
-        delay: Math.random() * 2,
-      }}
-      style={{
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-      }}
-    />
-  ))
+  const [elements, setElements] = useState<React.ReactNode[]>([])
+
+  useEffect(() => {
+    // Generate elements client-side only to avoid hydration mismatch
+    const generatedElements = Array.from({ length: count }, (_, i) => (
+      <motion.div
+        key={i}
+        className="absolute h-2 w-2 rounded-full bg-blue-500/30"
+        animate={{
+          x: [0, 100, 0],
+          y: [0, -100, 0],
+          opacity: [0.3, 0.8, 0.3],
+        }}
+        transition={{
+          duration: 3 + Math.random() * 2,
+          repeat: Infinity,
+          delay: Math.random() * 2,
+        }}
+        style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+        }}
+      />
+    ))
+    setElements(generatedElements)
+  }, [count])
 
   return <div className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}>{elements}</div>
 }

@@ -21,7 +21,7 @@ AI Copilot Vibe is a SaaS platform that provides developers with affordable acce
 
 **[Phase 0: Core Foundation Setup](./phase-0-core.md)**
 
-- **Track A**: UI Systems (shadcn/ui, reactbits, hover.dev, magicui)
+- **Track A**: UI Systems (shadcn/ui, magicui)
 - **Track B**: Backend Foundation (database, auth, payments, email)
 - **Parallel execution** for maximum efficiency
 - **Prerequisites**: All libraries and core infrastructure

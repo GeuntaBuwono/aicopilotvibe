@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority"
-
+import Link from "next/link"
 import { twMerge } from "tailwind-merge"
 
 const button = cva(
@@ -13,6 +13,7 @@ const button = cva(
     "border-blue-400",
     "transition-colors",
     "delay-50",
+    "cursor-pointer",
   ],
   {
     variants: {
@@ -33,15 +34,39 @@ const button = cva(
   }
 )
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLAnchorElement>, VariantProps<typeof button> {
+export interface ButtonProps extends VariantProps<typeof button> {
   underline?: boolean
-  href: string
+  href?: string
+  onClick?: () => void
+  children: React.ReactNode
+  className?: string
+  disabled?: boolean
 }
 
-export function Button({ className, intent, size, underline, ...props }: ButtonProps) {
+export function Button({
+  className,
+  intent,
+  size,
+  underline,
+  href,
+  onClick,
+  children,
+  disabled,
+  ...props
+}: ButtonProps) {
+  const buttonClass = twMerge(button({ intent, size, className, underline }))
+
+  if (href) {
+    return (
+      <Link href={href} className={buttonClass} {...props}>
+        {children}
+      </Link>
+    )
+  }
+
   return (
-    <a className={twMerge(button({ intent, size, className, underline }))} {...props}>
-      {props.children}
-    </a>
+    <button className={buttonClass} onClick={onClick} disabled={disabled} {...props}>
+      {children}
+    </button>
   )
 }

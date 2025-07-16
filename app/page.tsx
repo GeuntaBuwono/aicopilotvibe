@@ -1,66 +1,166 @@
 import { Metadata } from "next"
-import { Button } from "components/Button/Button"
-
-import { LP_GRID_ITEMS } from "lp-items"
+import { BorderAnimatedCard } from "@/components/animations/card-animations"
+import { ParticleBackground } from "components/magic/particle-background"
+import { BlurFade } from "components/magicui/blur-fade"
+import { MagicCard } from "components/magicui/magic-card"
+import { Comparison } from "components/marketing/Comparison/Comparison"
+import { Features } from "components/marketing/Features/Features"
+import { Footer } from "components/marketing/Footer/Footer"
+import { Hero } from "components/marketing/Hero/Hero"
+import { Navigation } from "components/marketing/Navigation/Navigation"
+import { Pricing } from "components/marketing/Pricing/Pricing"
 
 export const metadata: Metadata = {
-  title: "Next.js Enterprise Boilerplate",
+  title: "AI Copilot Vibe - Never Hit Token Limits Again",
+  description:
+    "Email service with GitHub access and daily token resets for developers. Stop hitting limits in Cursor, Copilot & Claude Code. Early access $150/month.",
   twitter: {
     card: "summary_large_image",
   },
   openGraph: {
-    url: "https://next-enterprise.vercel.app/",
+    url: "https://aicopilotvibe.com/",
+    title: "AI Copilot Vibe - Never Hit Token Limits Again",
+    description:
+      "Email service with GitHub access and daily token resets for developers. Stop hitting limits in Cursor, Copilot & Claude Code. Early access $150/month.",
     images: [
       {
         width: 1200,
         height: 630,
-        url: "https://raw.githubusercontent.com/Blazity/next-enterprise/main/.github/assets/project-logo.png",
+        url: "https://aicopilotvibe.com/og-image.png",
       },
     ],
   },
 }
 
-export default function Web() {
+export default function HomePage() {
   return (
-    <>
-      <section className="bg-white dark:bg-gray-900">
-        <div className="mx-auto grid max-w-(--breakpoint-xl) px-4 py-8 text-center lg:py-16">
-          <div className="mx-auto place-self-center">
-            <h1 className="mb-4 max-w-2xl text-4xl leading-none font-extrabold tracking-tight md:text-5xl xl:text-6xl dark:text-white">
-              Next.js Enterprise Boilerplate
-            </h1>
-            <p className="mb-6 max-w-2xl font-light text-gray-500 md:text-lg lg:mb-8 lg:text-xl dark:text-gray-400">
-              Jumpstart your enterprise project with our feature-packed, high-performance Next.js boilerplate!
-              Experience rapid UI development, AI-powered code reviews, and an extensive suite of tools for a smooth and
-              enjoyable development process.
-            </p>
-            <Button href="https://github.com/Blazity/next-enterprise" className="mr-3">
-              Get started
-            </Button>
-            <Button
-              href="https://vercel.com/new/git/external?repository-url=https://github.com/Blazity/next-enterprise"
-              intent="secondary"
-            >
-              Deploy Now
-            </Button>
-          </div>
-        </div>
-      </section>
-      <section className="bg-white dark:bg-gray-900">
-        <div className="mx-auto max-w-(--breakpoint-xl) px-4 py-8 sm:py-16 lg:px-6">
-          <div className="justify-center space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
-            {LP_GRID_ITEMS.map((singleItem) => (
-              <div key={singleItem.title} className="flex flex-col items-center justify-center text-center">
-                <div className="bg-primary-100 dark:bg-primary-900 mb-4 flex size-10 items-center justify-center rounded-full p-1.5 text-blue-700 lg:size-12">
-                  {singleItem.icon}
-                </div>
-                <h3 className="mb-2 text-xl font-bold dark:text-white">{singleItem.title}</h3>
-                <p className="text-gray-500 dark:text-gray-400">{singleItem.description}</p>
+    <div className="relative min-h-screen">
+      {/* Smooth cursor effect */}
+
+      {/* Background particle effect */}
+      <ParticleBackground />
+
+      {/* Main content with enhanced animations */}
+      <div className="relative z-10">
+        <BlurFade delay={0.1}>
+          <Navigation />
+        </BlurFade>
+
+        <BlurFade delay={0.2}>
+          <Hero />
+        </BlurFade>
+
+        <BlurFade delay={0.3}>
+          <Features />
+        </BlurFade>
+
+        <BlurFade delay={0.4}>
+          <Comparison />
+        </BlurFade>
+
+        <BlurFade delay={0.5}>
+          <Pricing />
+        </BlurFade>
+
+        {/* Enhanced testimonials section using BorderAnimatedCard */}
+        <section className="bg-muted/50 py-20">
+          <div className="container mx-auto px-4">
+            <BlurFade delay={0.6}>
+              <div className="mb-16 text-center">
+                <h2 className="mb-4 text-4xl font-bold">What Developers Say</h2>
+                <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+                  Early access users share their experience with unlimited AI coding
+                </p>
               </div>
-            ))}
+            </BlurFade>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <BlurFade delay={0.7}>
+                <BorderAnimatedCard className="h-full">
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+                      <div>
+                        <h4 className="font-semibold">Solo Entrepreneur</h4>
+                        <p className="text-muted-foreground text-sm">Independent Developer</p>
+                      </div>
+                    </div>
+                    <p className="text-muted-foreground">
+                      "Finally, no more hitting token limits! The daily reset feature is a game-changer for my
+                      productivity."
+                    </p>
+                  </div>
+                </BorderAnimatedCard>
+              </BlurFade>
+
+              <BlurFade delay={0.8}>
+                <MagicCard className="h-full p-6" gradientFrom="#3b82f6" gradientTo="#8b5cf6">
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="h-12 w-12 rounded-full bg-gradient-to-r from-green-500 to-blue-500" />
+                      <div>
+                        <h4 className="font-semibold">Freelancer</h4>
+                        <p className="text-muted-foreground text-sm">Startup Founder</p>
+                      </div>
+                    </div>
+                    <p className="text-muted-foreground">
+                      "The GitHub integration is seamless. I can code without worrying about rate limits anymore."
+                    </p>
+                  </div>
+                </MagicCard>
+              </BlurFade>
+
+              <BlurFade delay={0.9}>
+                <BorderAnimatedCard className="h-full">
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="h-12 w-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500" />
+                      <div>
+                        <h4 className="font-semibold">Tech Consultant</h4>
+                        <p className="text-muted-foreground text-sm">Product Manager</p>
+                      </div>
+                    </div>
+                    <p className="text-muted-foreground">
+                      "Worth every penny! The unlimited access has 10x'd my coding speed and creativity."
+                    </p>
+                  </div>
+                </BorderAnimatedCard>
+              </BlurFade>
+            </div>
           </div>
-        </div>
-      </section>
-    </>
+        </section>
+
+        {/* Enhanced stats section */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <BlurFade delay={1.0}>
+              <div className="grid gap-6 md:grid-cols-3">
+                <MagicCard className="p-8 text-center" gradientOpacity={0.1}>
+                  <div className="text-4xl font-bold text-blue-600">100%</div>
+                  <div className="text-muted-foreground mt-2">Unlimited Access</div>
+                  <div className="text-muted-foreground mt-1 text-sm">No token restrictions</div>
+                </MagicCard>
+
+                <MagicCard className="p-8 text-center" gradientOpacity={0.1}>
+                  <div className="text-4xl font-bold text-purple-600">24h</div>
+                  <div className="text-muted-foreground mt-2">Setup Time</div>
+                  <div className="text-muted-foreground mt-1 text-sm">Quick deployment</div>
+                </MagicCard>
+
+                <MagicCard className="p-8 text-center" gradientOpacity={0.1}>
+                  <div className="text-4xl font-bold text-green-600">Daily</div>
+                  <div className="text-muted-foreground mt-2">Token Reset</div>
+                  <div className="text-muted-foreground mt-1 text-sm">Fresh start every day</div>
+                </MagicCard>
+              </div>
+            </BlurFade>
+          </div>
+        </section>
+
+        <BlurFade delay={1.1}>
+          <Footer />
+        </BlurFade>
+      </div>
+    </div>
   )
 }
