@@ -4,6 +4,7 @@ import { ParticleBackground } from "components/magic/particle-background"
 import { BlurFade } from "components/magicui/blur-fade"
 import { MagicCard } from "components/magicui/magic-card"
 import { Comparison } from "components/marketing/Comparison/Comparison"
+import { FAQ } from "components/marketing/FAQ/FAQ"
 import { Features } from "components/marketing/Features/Features"
 import { Footer } from "components/marketing/Footer/Footer"
 import { Hero } from "components/marketing/Hero/Hero"
@@ -62,10 +63,14 @@ export default function HomePage() {
           <Pricing />
         </BlurFade>
 
+        <BlurFade delay={0.6}>
+          <FAQ />
+        </BlurFade>
+
         {/* Enhanced testimonials section using BorderAnimatedCard */}
-        <section className="bg-muted/50 py-20">
+        <section className="py-20">
           <div className="container mx-auto px-4">
-            <BlurFade delay={0.6}>
+            <BlurFade delay={0.7}>
               <div className="mb-16 text-center">
                 <h2 className="mb-4 text-4xl font-bold">What Developers Say</h2>
                 <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
@@ -75,7 +80,7 @@ export default function HomePage() {
             </BlurFade>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              <BlurFade delay={0.7}>
+              <BlurFade delay={0.8}>
                 <BorderAnimatedCard className="h-full">
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
@@ -93,7 +98,7 @@ export default function HomePage() {
                 </BorderAnimatedCard>
               </BlurFade>
 
-              <BlurFade delay={0.8}>
+              <BlurFade delay={0.9}>
                 <MagicCard className="h-full p-6" gradientFrom="#3b82f6" gradientTo="#8b5cf6">
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
@@ -110,7 +115,7 @@ export default function HomePage() {
                 </MagicCard>
               </BlurFade>
 
-              <BlurFade delay={0.9}>
+              <BlurFade delay={1.0}>
                 <BorderAnimatedCard className="h-full">
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
@@ -133,7 +138,7 @@ export default function HomePage() {
         {/* Enhanced stats section */}
         <section className="py-20">
           <div className="container mx-auto px-4">
-            <BlurFade delay={1.0}>
+            <BlurFade delay={1.1}>
               <div className="grid gap-6 md:grid-cols-3">
                 <MagicCard className="p-8 text-center" gradientOpacity={0.1}>
                   <div className="text-4xl font-bold text-blue-600">100%</div>
@@ -157,7 +162,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <BlurFade delay={1.1}>
+        <BlurFade delay={1.2}>
           <Footer />
         </BlurFade>
       </div>

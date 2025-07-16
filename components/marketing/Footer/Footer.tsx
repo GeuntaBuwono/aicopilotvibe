@@ -52,6 +52,7 @@ export function Footer() {
                 { name: "Features", href: "#features" },
                 { name: "Pricing", href: "#pricing" },
                 { name: "Comparison", href: "#comparison" },
+                { name: "FAQ", href: "#faq" },
               ].map((link) => (
                 <li key={link.name}>
                   <ButtonHover

@@ -10,7 +10,7 @@ import { LP_GRID_ITEMS } from "../../../lp-items"
 
 export function Features() {
   return (
-    <section id="features" className="bg-background py-20 lg:py-32">
+    <section id="features" className="py-20 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Enhanced Section Header */}
         <div className="mb-20 text-center">
@@ -107,7 +107,7 @@ export function Features() {
                 </TextAnimate>
 
                 <div className="space-y-4">
-                  {["24-hour setup process", "No refund policy", "Limited users only"].map((benefit, index) => (
+                  {["24-hour setup process", "Early access pricing", "Limited users only"].map((benefit, index) => (
                     <div
                       key={benefit}
                       className="animate-in slide-in-from-left-4 flex items-center space-x-3 duration-800"
