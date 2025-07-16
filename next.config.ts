@@ -4,6 +4,7 @@ import { type NextConfig } from "next"
 import { env } from "./env.mjs"
 
 const config: NextConfig = {
+  distDir: process.env.BUILD_DIR || '.next', // Default to .next if no BUILD_DIR is set
   reactStrictMode: true,
   logging: {
     fetches: {

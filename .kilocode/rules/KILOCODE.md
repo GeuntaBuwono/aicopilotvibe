@@ -1,160 +1,163 @@
-# KILOCODE.md
-this application is aicopilotvibe with domain aicopilotvibe.com
+**AICopilotVibe** (aicopilotvibe.com) - Next.js 15 enterprise application with App Router
 
-This file provides guidance to Kilo Code (kilo.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## instructions
-keep me updated on @docs if phase has been completed
-use app router patterns nextjs
-use Server Action patterns nextjs
+## Available Commands (Current)
 
-## MCP
-- keep using context7 for latest documentation
-- we should use browsermcp for browser testing instead of playwright if possible
-
-## Development Commands
-
-### Core Development
+### Development
 ```bash
-pnpm dev             # Start development server (Next.js 15 with App Router)
+pnpm dev             # Start development server (Next.js 15 with App Router + Turbo)
 pnpm build           # Production build with bundle analysis
 pnpm start           # Start production server
-pnpm lint            # Run ESLint with custom import ordering rules
+pnpm lint            # Run ESLint with TypeScript + import ordering
 pnpm lint:fix        # Auto-fix linting issues
-pnpm type-check      # TypeScript strict mode checking
+pnpm prettier        # Check code formatting
+pnpm prettier:fix    # Auto-fix formatting issues
+pnpm format          # Format all TypeScript/TSX/MD files
+pnpm analyze         # Build with bundle analyzer
 ```
 
-### Testing
+### Testing & Quality
 ```bash
 pnpm test            # Run Jest unit tests
-pnpm test:watch      # Jest in watch mode
-pnpm test:e2e        # Playwright end-to-end tests with multi-browser support
-pnpm storybook       # Component development environment
-pnpm storybook:build # Build Storybook for deployment
+pnpm e2e:headless    # Run Playwright E2E tests (headless)
+pnpm e2e:ui          # Run Playwright E2E tests (with UI)
+pnpm storybook       # Start Storybook development server
+pnpm build-storybook # Build Storybook for deployment
+pnpm test-storybook  # Run Storybook tests
 ```
 
-### Database Operations (Once Implemented)
+### Utilities
 ```bash
-pnpm db:generate     # Generate Drizzle migrations
-pnpm db:migrate      # Apply database migrations
-pnpm db:seed         # Seed database with initial data
-pnpm db:studio       # Open Drizzle Studio (database browser)
+pnpm coupling-graph  # Generate dependency coupling graph (graph.svg)
 ```
 
-## Architecture Overview
+## Tech Stack (Current Implementation)
 
-### Tech Stack Foundation
-- **Next.js 15.3.1** with App Router (latest React 19 patterns)
-- **TypeScript** with strict mode and `noUncheckedIndexedAccess`
-- **Tailwind CSS v4.1.5** with comprehensive Radix UI component ecosystem
+### Core Framework
+- **Next.js 15.3.1** with App Router + React 19
+- **TypeScript** with strict mode + `noUncheckedIndexedAccess`
+- **Tailwind CSS 4.1.5** with PostCSS integration
 - **Class Variance Authority (CVA)** for type-safe component variants
 
-### Project Structure Pattern
-```
-app/                 # Next.js App Router (server components by default)
-├── layout.tsx       # Root layout with Tailwind and metadata
-├── page.tsx         # Landing page (marketing content)
-└── api/            # API routes using new App Router conventions
-
-components/          # Design system with CVA patterns
-├── Button/          # Example: CVA-based variants with Radix primitives
-└── Tooltip/         # Accessible components with Radix UI
-
-docs/               # Comprehensive project documentation
-├── README.md        # Project navigation hub
-├── technical-architecture.md  # Complete tech stack specification
-├── implementation-roadmap.md  # 8-week development phases
-└── development-setup.md       # Local environment setup
-```
-
-### Component Development Patterns
-
-#### Design System Approach
-- **CVA (Class Variance Authority)** for consistent component variants
-- **Radix UI primitives** as foundation for accessibility and behavior
+### Component System
+- **Radix UI primitives** (15+ components) for accessibility
 - **tailwind-merge** for intelligent class conflict resolution
+- **CVA-based design system** with consistent variant patterns
 
-Example component pattern:
-```typescript
-const button = cva([
-  "inline-flex items-center justify-center rounded-md text-sm font-medium",
-  "focus-visible:outline-none focus-visible:ring-2"
-], {
-  variants: {
-    intent: {
-      primary: "bg-blue-600 text-white hover:bg-blue-700",
-      secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200"
-    },
-    size: {
-      sm: "h-9 px-3",
-      lg: "h-11 px-8"
-    }
-  }
-})
-```
-
-### Testing Strategy
+### Testing & Quality
 - **Jest + React Testing Library** for unit tests
 - **Playwright** for E2E tests with auto-starting dev server
 - **Storybook** for component development and visual testing
-- **Parallel execution** enabled for performance
+- **ESLint 9 + Prettier** with TypeScript and import ordering
 
-### Environment & Configuration
-- **T3 Env + Zod** for type-safe environment validation
+### Build & Deploy
 - **Bundle analyzer** integrated for performance monitoring
 - **OpenTelemetry** instrumentation for observability
-- **Strict TypeScript** with enhanced type checking
+- **T3 Env + Zod** for type-safe environment validation
 
-## Critical Implementation Status
+## Current Project Structure
+```
+app/                 # Next.js App Router (✅ ACTIVE)
+├── layout.tsx       # Root layout with Tailwind
+├── page.tsx         # Landing page
+└── api/             # API routes (App Router format)
+    └── health/
+        └── route.ts
 
-### ✅ Fully Implemented Foundation
-- Modern Next.js setup with enterprise-grade tooling
-- Comprehensive Radix UI component ecosystem (15+ primitives)
-- Production-ready build pipeline with optimization
-- Complete testing infrastructure (unit, E2E, visual)
+components/          # Design System (✅ ACTIVE)
+├── Button/          # CVA-based button with variants
+│   ├── Button.tsx
+│   └── Button.stories.tsx
+└── Tooltip/         # Radix UI tooltip wrapper
+    └── Tooltip.tsx
+```
 
-### ❌ Missing Core Business Logic (Ready for Implementation)
-- **Authentication**: better-auth system (user + admin separation)
-- **Database**: Drizzle ORM + PostgreSQL schema (6 tables planned)
+## Component Development Pattern (✅ IMPLEMENTED)
+
+### CVA Design System
+All components follow the **Class Variance Authority** pattern for type-safe variants:
+
+```typescript
+// components/Button/Button.tsx - Current implementation
+const button = cva([
+  "justify-center", "inline-flex", "items-center", "rounded-xl",
+  "text-center", "border", "border-blue-400", "transition-colors"
+], {
+  variants: {
+    intent: {
+      primary: ["bg-blue-400", "text-white", "hover:enabled:bg-blue-700"],
+      secondary: ["bg-transparent", "text-blue-400", "hover:enabled:bg-blue-400"]
+    },
+    size: {
+      sm: ["min-w-20", "h-full", "min-h-10", "text-sm", "py-1.5", "px-4"],
+      lg: ["min-w-32", "h-full", "min-h-12", "text-lg", "py-2.5", "px-6"]
+    }
+  },
+  defaultVariants: { intent: "primary", size: "lg" }
+})
+```
+
+### Component Creation Rules
+1. **Use CVA for ALL variants** - never inline conditional classes
+2. **Leverage Radix UI primitives** before creating custom components
+3. **Export TypeScript interfaces** with `VariantProps<typeof cva>`
+4. **Include Storybook stories** for visual testing
+
+## Implementation Status
+
+### ✅ COMPLETED Foundation
+- **Next.js 15 App Router** with React 19 + TypeScript strict mode
+- **CVA-based component system** with Radix UI primitives (15+ components)
+- **Complete testing infrastructure** (Jest, Playwright, Storybook)
+- **Production-ready build pipeline** with bundle analysis + OpenTelemetry
+- **Code quality tooling** (ESLint 9, Prettier, conventional commits)
+
+### ⏳ PLANNED (Not Yet Implemented)
+- **Authentication**: better-auth system (user + admin roles)
+- **Database**: Drizzle ORM + PostgreSQL (schema designed, not connected)
 - **Payments**: Polar.sh integration with webhook handling
 - **Email**: Resend service with transactional templates
 - **Analytics**: Umami + Sentry monitoring
 
-## Development Workflow
+**Important**: Database commands (`db:generate`, `db:migrate`, etc.) do not exist yet.
 
-### Code Quality Standards
-- **ESLint 9** with TypeScript and custom import ordering
-- **Prettier** with Tailwind CSS plugin integration
-- **Conventional commits** for standardized git history
-- **Type-safe everything** approach with strict TypeScript
+## Development Guidelines
 
-### Performance Considerations
-- **Server Components** by default in App Router
-- **Bundle analysis** on every build
-- **Image optimization** through Next.js built-ins
-- **Static optimization** for marketing pages
+### Code Architecture Principles
+- **Server Components by default** - Use Client Components only when needed
+- **Server Actions for mutations** - Follow Next.js 15 App Router patterns
+- **CVA for all variants** - Never use conditional class logic
+- **Type-safe everything** - Strict TypeScript with proper error boundaries
 
-### Documentation-Driven Development
-All architectural decisions and implementation plans are documented in `/docs/`. Key documents:
-- `technical-architecture.md` - Complete tech stack with implementation status
-- `implementation-roadmap.md` - 8-week phased development plan
-- `database-schema.md` - Complete PostgreSQL schema with Drizzle setup
+### File Organization
+- **API routes**: Use App Router format (`app/api/*/route.ts`)
+- **Components**: Follow CVA pattern with Storybook stories
+- **Pages**: Server Components in `/app/` directory
+- **Styles**: Tailwind classes only, no custom CSS
 
-## Key Development Principles
+### Performance Standards
+- **Bundle analysis on every build** - Monitor performance impact
+- **Server-side rendering** - Leverage Next.js optimization
+- **Component lazy loading** - Use dynamic imports when appropriate
 
-### Follow Established Patterns
-- Use CVA for all component variants
-- Leverage existing Radix UI primitives before creating custom components
-- Maintain the design system approach with consistent prop interfaces
+## Essential Instructions
 
-### Maintain Type Safety
-- All environment variables must be validated through T3 Env
-- Use TypeScript strict mode patterns throughout
-- Implement proper error boundaries and type guards
+### Development Workflow
+1. **Always use App Router patterns** - No Pages Router
+2. **Implement Server Actions** for form handling and mutations
+3. **Use context7 MCP** for latest library documentation
+4. **Use browsermcp** for browser testing instead of Playwright when possible
+5. **After each phase**, fix issues lint and format
+6. **Update `/plans/` when phases are completed**
 
-### Architecture Consistency
-- Server Components by default, Client Components only when needed
-- API routes follow App Router conventions (`route.ts` files)
-- Component props use CVA variant patterns for consistency
+### MCP Integration
+- **Context7**: For retrieving up-to-date library documentation
+- **BrowserMCP**: For browser automation and testing
+- **Sequential Thinking**: For complex problem-solving workflows
 
-The codebase has excellent foundations but requires implementation of core business logic following the comprehensive plans documented in `/docs/`.
+### Quality Assurance
+- **Test components with Storybook** before integration
+- **Run E2E tests** for critical user flows
+- **Validate TypeScript** with strict mode enabled
+- **Follow conventional commits** for git history
