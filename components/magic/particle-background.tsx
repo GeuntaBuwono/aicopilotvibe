@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 
 interface Particle {
@@ -127,37 +127,43 @@ export function ParticleBackground({
 
 // Simplified particle background with CSS animation
 export function SimpleParticleBackground({ className }: { className?: string }) {
+  const [particles, setParticles] = useState<React.ReactNode[]>([])
+
+  useEffect(() => {
+    // Generate particles client-side only to avoid hydration mismatch
+    const animatedParticles = [...Array(20)].map((_, i) => (
+      <div
+        key={i}
+        className="absolute h-1 w-1 animate-pulse rounded-full bg-blue-500"
+        style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          animationDelay: `${Math.random() * 2}s`,
+          animationDuration: `${2 + Math.random() * 2}s`,
+        }}
+      />
+    ))
+
+    const floatingElements = [...Array(10)].map((_, i) => (
+      <div
+        key={`float-${i}`}
+        className="absolute h-2 w-2 animate-bounce rounded-full bg-purple-500/30"
+        style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          animationDelay: `${Math.random() * 3}s`,
+          animationDuration: `${3 + Math.random() * 2}s`,
+        }}
+      />
+    ))
+
+    setParticles([...animatedParticles, ...floatingElements])
+  }, [])
+
   return (
     <div className={cn("pointer-events-none fixed inset-0 overflow-hidden", className)}>
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white/20 to-purple-50/50 dark:from-blue-950/50 dark:via-gray-900/20 dark:to-purple-950/50" />
-
-      {/* Animated particles */}
-      {[...Array(20)].map((_, i) => (
-        <div
-          key={i}
-          className="absolute h-1 w-1 animate-pulse rounded-full bg-blue-500"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 2}s`,
-            animationDuration: `${2 + Math.random() * 2}s`,
-          }}
-        />
-      ))}
-
-      {/* Floating elements */}
-      {[...Array(10)].map((_, i) => (
-        <div
-          key={`float-${i}`}
-          className="absolute h-2 w-2 animate-bounce rounded-full bg-purple-500/30"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 3}s`,
-            animationDuration: `${3 + Math.random() * 2}s`,
-          }}
-        />
-      ))}
+      {particles}
     </div>
   )
 }

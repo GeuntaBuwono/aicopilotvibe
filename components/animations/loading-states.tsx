@@ -1,6 +1,7 @@
 "use client"
 
 import { Loader2 } from "lucide-react"
+import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
 interface LoadingSpinnerProps {
@@ -74,13 +75,21 @@ export function LoadingRipple({ className }: { className?: string }) {
 }
 
 export function SkeletonLoader({ lines = 3, className }: { lines?: number; className?: string }) {
+  const [widths, setWidths] = useState<number[]>([])
+
+  useEffect(() => {
+    // Generate widths client-side only to avoid hydration mismatch
+    const randomWidths = Array.from({ length: lines }, () => Math.random() * 40 + 60)
+    setWidths(randomWidths)
+  }, [lines])
+
   return (
     <div className={cn("space-y-3", className)}>
       {Array.from({ length: lines }, (_, i) => (
         <div
           key={i}
           className="h-4 animate-pulse rounded bg-gray-200 dark:bg-gray-700"
-          style={{ width: `${Math.random() * 40 + 60}%` }}
+          style={{ width: widths[i] ? `${widths[i]}%` : "80%" }}
         />
       ))}
     </div>

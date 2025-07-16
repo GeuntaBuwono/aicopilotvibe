@@ -175,7 +175,6 @@ const button = cva(
 4. **Use browsermcp** for browser testing instead of Playwright when possible
 5. **After each phase**, fix issues lint and format
 6. **Update `/plans/` when phases are completed**
-7. **use this ui library** reactbits.dev, hover.dev, magicui.design if possible
 
 ### MCP Integration
 
