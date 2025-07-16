@@ -527,23 +527,50 @@ pnpm install dotenv tsx
 
 #### **Database Schema Design**
 
+**🔄 Unified User Management Architecture**
+
+Instead of separate `users` and `adminUsers` tables, we use a single [`users`](db/schema.ts:536) table with a role-based access control system:
+
+**Benefits:**
+
+- **Simplified Authentication**: Single auth system for all user types
+- **Better Scalability**: Easy to add new roles (moderator, super_admin, etc.)
+- **Reduced Complexity**: No duplicate user management logic
+- **Improved Maintainability**: Single source of truth for user data
+- **Standard RBAC Pattern**: Industry-standard role-based access control
+
+**Role Hierarchy:**
+
+- [`user`](db/schema.ts:540): Regular customers with subscription access
+- [`admin`](db/schema.ts:540): Staff members who can manage orders and users
+- [`super_admin`](db/schema.ts:540): Full system access including user management
+
 ```typescript
 // db/schema.ts
-import { pgTable, uuid, varchar, text, timestamp, jsonb, inet, boolean } from "drizzle-orm/pg-core"
+import { pgTable, uuid, varchar, text, timestamp, jsonb, inet, boolean, pgEnum } from "drizzle-orm/pg-core"
 import { relations } from "drizzle-orm"
 
-// User Management
+// User Role Enum
+export const userRoleEnum = pgEnum("user_role", ["user", "admin", "super_admin"])
+
+// Unified User Management
 export const users = pgTable("users", {
   id: uuid("id").defaultRandom().primaryKey(),
   email: varchar("email", { length: 255 }).notNull().unique(),
   passwordHash: varchar("password_hash", { length: 255 }).notNull(),
+  role: userRoleEnum("role").default("user"),
+
+  // User-specific fields
   subscriptionStatus: varchar("subscription_status", { length: 50 }).default("inactive"),
   enterpriseEmail: varchar("enterprise_email", { length: 255 }),
   enterprisePassword: varchar("enterprise_password", { length: 255 }),
   countryCode: varchar("country_code", { length: 2 }),
   paymentDate: timestamp("payment_date"),
   subscriptionExpiresAt: timestamp("subscription_expires_at"),
+
+  // Common fields
   emailVerified: boolean("email_verified").default(false),
+  lastLogin: timestamp("last_login"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 })
@@ -555,22 +582,12 @@ export const emailOrders = pgTable("email_orders", {
   status: varchar("status", { length: 50 }).default("pending"),
   paymentId: varchar("payment_id", { length: 255 }),
   polarSubscriptionId: varchar("polar_subscription_id", { length: 255 }),
-  assignedAdminId: uuid("assigned_admin_id").references(() => adminUsers.id),
+  assignedAdminId: uuid("assigned_admin_id").references(() => users.id),
   adminNotes: text("admin_notes"),
   priority: varchar("priority", { length: 20 }).default("normal"),
   createdAt: timestamp("created_at").defaultNow(),
   deliveredAt: timestamp("delivered_at"),
   updatedAt: timestamp("updated_at").defaultNow(),
-})
-
-// Admin System
-export const adminUsers = pgTable("admin_users", {
-  id: uuid("id").defaultRandom().primaryKey(),
-  email: varchar("email", { length: 255 }).notNull().unique(),
-  passwordHash: varchar("password_hash", { length: 255 }).notNull(),
-  role: varchar("role", { length: 50 }).default("admin"),
-  lastLogin: timestamp("last_login"),
-  createdAt: timestamp("created_at").defaultNow(),
 })
 
 // Email Logging
@@ -586,10 +603,10 @@ export const emailLogs = pgTable("email_logs", {
   sentAt: timestamp("sent_at").defaultNow(),
 })
 
-// Admin Activity
+// Admin Activity (now references users table)
 export const adminActivity = pgTable("admin_activity", {
   id: uuid("id").defaultRandom().primaryKey(),
-  adminId: uuid("admin_id").references(() => adminUsers.id),
+  adminId: uuid("admin_id").references(() => users.id),
   action: varchar("action", { length: 100 }),
   targetType: varchar("target_type", { length: 50 }),
   targetId: uuid("target_id"),
@@ -602,6 +619,10 @@ export const adminActivity = pgTable("admin_activity", {
 export const usersRelations = relations(users, ({ many }) => ({
   orders: many(emailOrders),
   emailLogs: many(emailLogs),
+  assignedOrders: many(emailOrders, {
+    relationName: "assignedAdmin",
+  }),
+  adminActivities: many(adminActivity),
 }))
 
 export const emailOrdersRelations = relations(emailOrders, ({ one }) => ({
@@ -609,15 +630,18 @@ export const emailOrdersRelations = relations(emailOrders, ({ one }) => ({
     fields: [emailOrders.userId],
     references: [users.id],
   }),
-  assignedAdmin: one(adminUsers, {
+  assignedAdmin: one(users, {
     fields: [emailOrders.assignedAdminId],
-    references: [adminUsers.id],
+    references: [users.id],
+    relationName: "assignedAdmin",
   }),
 }))
 
-export const adminUsersRelations = relations(adminUsers, ({ many }) => ({
-  assignedOrders: many(emailOrders),
-  activities: many(adminActivity),
+export const adminActivityRelations = relations(adminActivity, ({ one }) => ({
+  admin: one(users, {
+    fields: [adminActivity.adminId],
+    references: [users.id],
+  }),
 }))
 ```
 
@@ -665,6 +689,122 @@ pnpm run db:migrate
 pnpm run db:seed
 ```
 
+**Database Seed Script**
+
+```typescript
+// db/seed.ts
+import { db } from "@/lib/db"
+import { users } from "@/db/schema"
+import bcrypt from "bcryptjs"
+
+async function seedDatabase() {
+  console.log("🌱 Seeding database...")
+
+  // Helper function to create users
+  const createUser = async (
+    email: string,
+    password: string,
+    role: "user" | "admin" | "super_admin",
+    subscriptionStatus: string,
+    emailVerified: boolean = true
+  ) => {
+    const hashedPassword = await bcrypt.hash(password, 12)
+    return await db.insert(users).values({
+      email,
+      passwordHash: hashedPassword,
+      role,
+      subscriptionStatus,
+      emailVerified,
+      ...(subscriptionStatus === "paid" && {
+        paymentDate: new Date(),
+        subscriptionExpiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
+      }),
+      ...(subscriptionStatus === "expired" && {
+        paymentDate: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000), // 45 days ago
+        subscriptionExpiresAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000), // 15 days ago
+      }),
+    })
+  }
+
+  // ADMIN USERS
+  console.log("👑 Creating admin users...")
+
+  // Super Admin
+  await createUser("admin@aicopilotvibe.com", "admin123", "super_admin", "active")
+
+  // Regular Admin
+  await createUser("support@aicopilotvibe.com", "admin456", "admin", "active")
+
+  // REGULAR USERS WITH DIFFERENT STATUSES
+  console.log("👥 Creating regular users...")
+
+  // Active paid users
+  await createUser("user1@example.com", "user123", "user", "paid")
+  await createUser("user2@example.com", "user234", "user", "paid")
+  await createUser("user3@example.com", "user345", "user", "paid")
+
+  // Inactive users (not paid)
+  await createUser("inactive1@example.com", "inactive123", "user", "inactive", false) // Not email verified
+  await createUser("inactive2@example.com", "inactive234", "user", "inactive")
+  await createUser("inactive3@example.com", "inactive345", "user", "inactive")
+
+  // Pending users (registered but not paid)
+  await createUser("pending1@example.com", "pending123", "user", "pending")
+  await createUser("pending2@example.com", "pending234", "user", "pending")
+
+  // Expired users (previously paid but expired)
+  await createUser("expired1@example.com", "expired123", "user", "expired")
+  await createUser("expired2@example.com", "expired234", "user", "expired")
+
+  // Cancelled users
+  await createUser("cancelled1@example.com", "cancelled123", "user", "cancelled")
+  await createUser("cancelled2@example.com", "cancelled234", "user", "cancelled")
+
+  console.log("✅ Database seeded successfully!")
+  console.log("\n📊 SEEDED USERS SUMMARY:")
+  console.log("=" + "=".repeat(50))
+
+  console.log("\n👑 ADMIN USERS:")
+  console.log("📧 Super Admin: admin@aicopilotvibe.com / admin123")
+  console.log("📧 Admin: support@aicopilotvibe.com / admin456")
+
+  console.log("\n💰 PAID USERS (active subscriptions):")
+  console.log("📧 user1@example.com / user123")
+  console.log("📧 user2@example.com / user234")
+  console.log("📧 user3@example.com / user345")
+
+  console.log("\n❌ INACTIVE USERS (never paid):")
+  console.log("📧 inactive1@example.com / inactive123 (email not verified)")
+  console.log("📧 inactive2@example.com / inactive234")
+  console.log("📧 inactive3@example.com / inactive345")
+
+  console.log("\n⏳ PENDING USERS (registered, not paid):")
+  console.log("📧 pending1@example.com / pending123")
+  console.log("📧 pending2@example.com / pending234")
+
+  console.log("\n💸 EXPIRED USERS (subscription expired):")
+  console.log("📧 expired1@example.com / expired123")
+  console.log("📧 expired2@example.com / expired234")
+
+  console.log("\n🚫 CANCELLED USERS:")
+  console.log("📧 cancelled1@example.com / cancelled123")
+  console.log("📧 cancelled2@example.com / cancelled234")
+
+  console.log("\n" + "=".repeat(52))
+  console.log("Total users created: 15")
+  console.log("- Super Admin: 1")
+  console.log("- Admin: 1")
+  console.log("- Regular Users: 13")
+  console.log("  - Paid: 3")
+  console.log("  - Inactive: 3")
+  console.log("  - Pending: 2")
+  console.log("  - Expired: 2")
+  console.log("  - Cancelled: 2")
+}
+
+seedDatabase().catch(console.error)
+```
+
 #### **Authentication Setup**
 
 ```bash
@@ -689,6 +829,10 @@ export const auth = betterAuth({
   },
   user: {
     additionalFields: {
+      role: {
+        type: "string",
+        defaultValue: "user",
+      },
       subscriptionStatus: {
         type: "string",
         defaultValue: "inactive",
@@ -699,6 +843,40 @@ export const auth = betterAuth({
 
 export type Session = typeof auth.$Infer.Session
 export type User = typeof auth.$Infer.User
+
+// Role-based access control helpers
+export function isAdmin(user: User): boolean {
+  return user.role === "admin" || user.role === "super_admin"
+}
+
+export function isSuperAdmin(user: User): boolean {
+  return user.role === "super_admin"
+}
+
+export function canAccessAdmin(user: User): boolean {
+  return isAdmin(user)
+}
+
+export function canManageUsers(user: User): boolean {
+  return isSuperAdmin(user)
+}
+
+export function canAssignOrders(user: User): boolean {
+  return isAdmin(user)
+}
+
+// Admin user creation helper
+export async function createAdminUser(email: string, password: string, role: "admin" | "super_admin" = "admin") {
+  const hashedPassword = await bcrypt.hash(password, 12)
+
+  return await db.insert(users).values({
+    email,
+    passwordHash: hashedPassword,
+    role,
+    emailVerified: true, // Admin accounts are pre-verified
+    subscriptionStatus: "active", // Admins have active status
+  })
+}
 ```
 
 ### **Day 3-4: Payment Integration**
@@ -940,13 +1118,9 @@ export async function sendCredentialsEmail(
 # Database
 DATABASE_URL="postgresql://user:password@localhost:5432/aicopilotvibe_dev"
 
-# Authentication
+# Authentication (Unified system for users and admins)
 BETTER_AUTH_SECRET="your-super-secret-key-at-least-32-chars"
 BETTER_AUTH_URL="http://localhost:3000"
-
-# Admin Authentication
-ADMIN_AUTH_SECRET="admin-super-secret-key-at-least-32-chars"
-ADMIN_AUTH_URL="http://localhost:3000/admin"
 
 # Payments
 POLAR_SECRET_KEY="polar_sk_test_xxxxx"
@@ -1007,8 +1181,8 @@ JWT_SECRET="jwt-secret-for-additional-security"
 ### **Database Testing**
 
 ```bash
-# Test database connection
-pnpm run db:studio
+# Test database connection using DBeaver (external tool)
+# Connect to: postgresql://user:password@localhost:5432/aicopilotvibe_dev
 
 # Test queries
 node -e "
