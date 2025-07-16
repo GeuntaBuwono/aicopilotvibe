@@ -17,9 +17,8 @@
 #### **Libraries to Integrate**:
 
 1. **shadcn/ui** - Primary component system
-2. **reactbits.dev** - Specialized components
-3. **hover.dev** - Animation components
-4. **magicui.design** - Magic UI effects
+2. **magicui.design** - Magic UI effects
+3. **Custom animation components** - Tailored animations
 
 #### **Success Criteria**:
 
@@ -89,9 +88,8 @@
 ### **📦 Libraries Stack**
 
 - **shadcn/ui** - Primary component system
-- **reactbits.dev** - Specialized components
-- **hover.dev** - Animation components
 - **magicui.design** - Magic UI effects
+- **Custom animation components** - Tailored animations
 
 ## **📋 Prerequisites**
 
@@ -156,11 +154,11 @@ npx shadcn-ui@latest add alert
 - [ ] Tailwind integration working
 - [ ] TypeScript types available
 
-### **Step 2: ReactBits.dev Integration (Day 2)**
+### **Step 2: Custom Marketing Components (Day 2)**
 
-#### **Component Selection Strategy**
+#### **Component Development Strategy**
 
-Visit https://reactbits.dev/ and copy the following components:
+Build custom marketing components using shadcn/ui as the foundation:
 
 **Marketing Components:**
 
@@ -177,15 +175,15 @@ Visit https://reactbits.dev/ and copy the following components:
 - Data visualization
 - Status indicators
 
-#### **Installation Process**
+#### **Development Process**
 
 ```bash
-# Create reactbits directory
-mkdir -p components/reactbits
+# Create custom marketing components directory
+mkdir -p components/marketing
 
-# Copy components from ReactBits.dev
+# Build custom components using shadcn/ui foundation
 # Directory structure:
-components/reactbits/
+components/marketing/
 ├── pricing-table.tsx
 ├── testimonial-card.tsx
 ├── feature-showcase.tsx
@@ -199,8 +197,8 @@ components/reactbits/
 #### **Integration Guidelines**
 
 ```typescript
-// Example: Pricing table integration
-import { PricingTable } from '@/components/reactbits/pricing-table';
+// Example: Custom pricing table integration
+import { PricingTable } from '@/components/marketing/pricing-table';
 import { Button } from '@/components/ui/button';
 
 export function PricingSection() {
@@ -223,16 +221,16 @@ export function PricingSection() {
 
 #### **Success Criteria**
 
-- [ ] ReactBits components copied and customized
+- [ ] Custom marketing components built and tested
 - [ ] Integration with shadcn/ui components
 - [ ] Responsive design maintained
 - [ ] TypeScript compatibility
 
-### **Step 3: Hover.dev Effects (Day 3)**
+### **Step 3: Custom Animation Effects (Day 3)**
 
-#### **Animation Selection**
+#### **Animation Development**
 
-Visit https://hover.dev/ and implement:
+Create custom animation effects using CSS and Framer Motion:
 
 **Button Animations:**
 
@@ -451,11 +449,7 @@ components/
 │   ├── card.tsx
 │   ├── form.tsx
 │   └── ...
-├── reactbits/             # ReactBits.dev components
-│   ├── pricing-table.tsx
-│   ├── testimonial-card.tsx
-│   └── ...
-├── animations/            # Hover.dev effects
+├── animations/            # Custom animation effects
 │   ├── button-hover.tsx
 │   ├── card-animations.tsx
 │   └── ...
@@ -1319,7 +1313,7 @@ app/api/
 
 ### **Day 3-4 Targets**
 
-- [ ] ReactBits and Hover.dev integrated
+- [ ] Custom animation components integrated
 - [ ] Database migrations working
 - [ ] Authentication system functional
 - [ ] Payment sandbox connected
@@ -1342,8 +1336,8 @@ app/api/
 ### **✅ Track A: UI Systems Setup - COMPLETED**
 
 - **shadcn/ui** - ✅ Primary component system fully integrated
-- **ReactBits.dev** - ✅ 7 specialized components implemented
-- **Hover.dev** - ✅ Animation effects added across 4 component types
+- **Custom Components** - ✅ 7 specialized marketing components implemented
+- **Animation Effects** - ✅ Custom animation effects added across 4 component types
 - **MagicUI.design** - ✅ 4 magic UI effects with Framer Motion integration
 
 ### **✅ Track B: Backend Foundation - COMPLETED**

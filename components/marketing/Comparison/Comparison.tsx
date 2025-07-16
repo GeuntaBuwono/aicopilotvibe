@@ -12,12 +12,9 @@ const comparisonData = [
     tool: "GitHub Copilot",
     tokenLimits: "Limited suggestions per month",
     price: "$10/month",
-    githubAccess: false,
     dailyReset: false,
     limitations: "Hit limits with heavy usage",
     features: [
-      { name: "Code suggestions", available: true },
-      { name: "GitHub integration", available: false },
       { name: "Unlimited tokens", available: false },
       { name: "Daily reset", available: false },
     ],
@@ -26,12 +23,9 @@ const comparisonData = [
     tool: "Cursor",
     tokenLimits: "Usage caps and rate limits",
     price: "$20/month",
-    githubAccess: false,
     dailyReset: false,
     limitations: "Frustrating token restrictions",
     features: [
-      { name: "Code suggestions", available: true },
-      { name: "GitHub integration", available: false },
       { name: "Unlimited tokens", available: false },
       { name: "Daily reset", available: false },
     ],
@@ -40,12 +34,9 @@ const comparisonData = [
     tool: "Claude Code",
     tokenLimits: "Strict rate limiting",
     price: "$20/month",
-    githubAccess: false,
     dailyReset: false,
     limitations: "Frequent blocking",
     features: [
-      { name: "Code suggestions", available: true },
-      { name: "GitHub integration", available: false },
       { name: "Unlimited tokens", available: false },
       { name: "Daily reset", available: false },
     ],
@@ -54,12 +45,9 @@ const comparisonData = [
     tool: "AI Copilot Vibe",
     tokenLimits: "Unlimited with daily resets",
     price: "$150/month",
-    githubAccess: true,
     dailyReset: true,
     limitations: "No token limits ever",
     features: [
-      { name: "Code suggestions", available: true },
-      { name: "GitHub integration", available: true },
       { name: "Unlimited tokens", available: true },
       { name: "Daily reset", available: true },
     ],
@@ -194,19 +182,6 @@ function ComparisonCardContent({ item }: { item: (typeof comparisonData)[0] }) {
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="flex flex-col space-y-2">
-        <span className="text-muted-foreground text-sm font-medium">GitHub Access</span>
-        <span className="text-sm">
-          {item.githubAccess ? (
-            <Badge variant="default" className="bg-green-500 text-white">
-              Full Access
-            </Badge>
-          ) : (
-            <Badge variant="secondary">No Access</Badge>
-          )}
-        </span>
       </div>
 
       <div className="flex flex-col space-y-2">
