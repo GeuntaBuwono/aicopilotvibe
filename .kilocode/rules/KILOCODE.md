@@ -1,7 +1,7 @@
-# CLAUDE.md
+# KILOCODE.md
 this application is aicopilotvibe with domain aicopilotvibe.com
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Kilo Code (kilo.ai/code) when working with code in this repository.
 
 ## instructions
 keep me updated on @docs if phase has been completed
