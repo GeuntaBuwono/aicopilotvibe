@@ -39,4 +39,5 @@ drizzle
 
 .env
 
-.next*
+.next-dev
+.next-dev/*
