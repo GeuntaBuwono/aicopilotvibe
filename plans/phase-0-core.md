@@ -3,22 +3,26 @@
 ## **🎯 Goal**: Set up all libraries and core infrastructure in parallel workstreams
 
 ### **⏱️ Timeline**: Week 0-1
+
 ### **🔄 Approach**: Parallel development tracks to eliminate bottlenecks
 
 ## **🚀 Parallel Development Strategy**
 
 ### **Track A: UI Systems Setup**
+
 - **Duration**: 5 days
 - **Team**: Frontend developers
 - **Deliverables**: All UI libraries integrated and tested
 
 #### **Libraries to Integrate**:
+
 1. **shadcn/ui** - Primary component system
-2. **reactbits.dev** - Specialized components  
+2. **reactbits.dev** - Specialized components
 3. **hover.dev** - Animation components
 4. **magicui.design** - Magic UI effects
 
 #### **Success Criteria**:
+
 - [ ] All UI libraries installed and configured
 - [ ] Component integration tested
 - [ ] Storybook setup with examples
@@ -26,17 +30,20 @@
 - [ ] Performance benchmarks met (<3s load time)
 
 ### **Track B: Backend Foundation**
-- **Duration**: 5 days  
+
+- **Duration**: 5 days
 - **Team**: Backend developers
 - **Deliverables**: Core backend infrastructure ready
 
 #### **Systems to Setup**:
+
 1. **Database** - PostgreSQL with Drizzle ORM
 2. **Authentication** - better-auth configuration
 3. **Payments** - Polar.sh integration
 4. **Email** - Resend service setup
 
 #### **Success Criteria**:
+
 - [ ] Database schema created and migrated
 - [ ] Authentication system functional
 - [ ] Payment sandbox working
@@ -46,11 +53,13 @@
 ## **🛡️ Risk Mitigation**
 
 ### **Technical Risks**
+
 - **UI Library Conflicts**: Early integration testing, fallback to shadcn/ui only
 - **External Dependencies**: Start service verification immediately
 - **Performance Issues**: Bundle size monitoring, lazy loading implementation
 
 ### **Timeline Risks**
+
 - **Development Delays**: Daily standups and blocker identification
 - **Integration Problems**: Continuous integration testing
 - **Resource Constraints**: Flexible scope and priority-based development
@@ -58,12 +67,14 @@
 ## **📊 Success Metrics**
 
 ### **Track A Metrics**
+
 - Component library functional: ✅/❌
 - Mobile responsiveness: ✅/❌
 - Accessibility compliance: ✅/❌
 - Performance targets met: ✅/❌
 
 ### **Track B Metrics**
+
 - Database connectivity: ✅/❌
 - Authentication working: ✅/❌
 - Payment integration: ✅/❌
@@ -76,12 +87,14 @@
 ## **🎯 Objective**: Integrate all UI libraries for cohesive component system
 
 ### **📦 Libraries Stack**
+
 - **shadcn/ui** - Primary component system
 - **reactbits.dev** - Specialized components
-- **hover.dev** - Animation components  
+- **hover.dev** - Animation components
 - **magicui.design** - Magic UI effects
 
 ## **📋 Prerequisites**
+
 - Node.js 18+
 - pnpm 8+
 - Next.js 15+ project setup
@@ -92,6 +105,7 @@
 ### **Step 1: shadcn/ui Setup (Day 1)**
 
 #### **Installation**
+
 ```bash
 # Initialize shadcn/ui
 npx shadcn-ui@latest init
@@ -115,6 +129,7 @@ npx shadcn-ui@latest add alert
 ```
 
 #### **Configuration**
+
 ```json
 // components.json
 {
@@ -135,6 +150,7 @@ npx shadcn-ui@latest add alert
 ```
 
 #### **Success Criteria**
+
 - [ ] shadcn/ui components installed
 - [ ] Components render correctly
 - [ ] Tailwind integration working
@@ -143,9 +159,11 @@ npx shadcn-ui@latest add alert
 ### **Step 2: ReactBits.dev Integration (Day 2)**
 
 #### **Component Selection Strategy**
+
 Visit https://reactbits.dev/ and copy the following components:
 
 **Marketing Components:**
+
 - Pricing tables (for subscription plans)
 - Feature showcases (for benefits section)
 - Testimonial cards (for social proof)
@@ -153,12 +171,14 @@ Visit https://reactbits.dev/ and copy the following components:
 - Hero sections (for landing page)
 
 **Dashboard Components:**
+
 - User profiles
 - Settings panels
 - Data visualization
 - Status indicators
 
 #### **Installation Process**
+
 ```bash
 # Create reactbits directory
 mkdir -p components/reactbits
@@ -177,6 +197,7 @@ components/reactbits/
 ```
 
 #### **Integration Guidelines**
+
 ```typescript
 // Example: Pricing table integration
 import { PricingTable } from '@/components/reactbits/pricing-table';
@@ -201,6 +222,7 @@ export function PricingSection() {
 ```
 
 #### **Success Criteria**
+
 - [ ] ReactBits components copied and customized
 - [ ] Integration with shadcn/ui components
 - [ ] Responsive design maintained
@@ -209,21 +231,25 @@ export function PricingSection() {
 ### **Step 3: Hover.dev Effects (Day 3)**
 
 #### **Animation Selection**
+
 Visit https://hover.dev/ and implement:
 
 **Button Animations:**
+
 - Hover lift effects
 - Ripple animations
 - Loading states
 - Press feedback
 
 **Card Animations:**
+
 - Hover elevation
 - Border animations
 - Content reveals
 - Smooth transitions
 
 #### **Implementation**
+
 ```bash
 # Create animations directory
 mkdir -p components/animations
@@ -238,6 +264,7 @@ components/animations/
 ```
 
 #### **Example Implementation**
+
 ```typescript
 // components/animations/button-hover.tsx
 export function ButtonHover({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -253,6 +280,7 @@ export function ButtonHover({ children, className = "" }: { children: React.Reac
 ```
 
 #### **Success Criteria**
+
 - [ ] Hover effects implemented
 - [ ] Mobile touch compatibility
 - [ ] Performance optimized (60fps)
@@ -261,21 +289,25 @@ export function ButtonHover({ children, className = "" }: { children: React.Reac
 ### **Step 4: MagicUI.design Integration (Day 4)**
 
 #### **Component Selection**
+
 Visit https://magicui.design/ and implement:
 
 **Background Effects:**
+
 - Particle systems
 - Gradient animations
 - Mesh gradients
 - Animated backgrounds
 
 **Interactive Elements:**
+
 - Scroll-triggered animations
 - Mouse-following effects
 - 3D transformations
 - Reveal animations
 
 #### **Setup**
+
 ```bash
 # Install required dependencies
 pnpm install framer-motion
@@ -294,6 +326,7 @@ components/magic/
 ```
 
 #### **Example Implementation**
+
 ```typescript
 // components/magic/particle-background.tsx
 "use client";
@@ -303,16 +336,16 @@ import { motion } from 'framer-motion';
 
 export function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  
+
   useEffect(() => {
     // Particle system implementation
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
+
     const ctx = canvas.getContext('2d');
     // Particle animation logic here
   }, []);
-  
+
   return (
     <div className="fixed inset-0 -z-10">
       <canvas
@@ -326,6 +359,7 @@ export function ParticleBackground() {
 ```
 
 #### **Success Criteria**
+
 - [ ] Magic UI effects implemented
 - [ ] Performance optimized
 - [ ] Mobile compatibility
@@ -334,6 +368,7 @@ export function ParticleBackground() {
 ### **Step 5: Integration Testing (Day 5)**
 
 #### **Component Testing**
+
 ```bash
 # Test all components work together
 # Create test pages for each component
@@ -342,6 +377,7 @@ export function ParticleBackground() {
 ```
 
 #### **Storybook Setup**
+
 ```bash
 # Initialize Storybook
 npx storybook@latest init
@@ -352,6 +388,7 @@ npx storybook@latest init
 ```
 
 #### **Performance Testing**
+
 ```bash
 # Bundle size analysis
 pnpm run build-analyzer
@@ -364,12 +401,14 @@ pnpm run build-analyzer
 ## **📊 Track A Success Metrics**
 
 ### **Technical Metrics**
+
 - [ ] All UI libraries integrated without conflicts
 - [ ] Component library functional in Storybook
 - [ ] Bundle size < 500KB for initial load
 - [ ] Performance score > 90 in Lighthouse
 
 ### **User Experience Metrics**
+
 - [ ] Mobile responsiveness verified
 - [ ] Accessibility compliance (WCAG 2.1 AA)
 - [ ] Animation performance (60fps)
@@ -380,6 +419,7 @@ pnpm run build-analyzer
 ### **Common Issues**
 
 #### **Library Conflicts**
+
 ```bash
 # Issue: CSS conflicts between libraries
 # Solution: Use CSS-in-JS or scoped styles
@@ -387,6 +427,7 @@ pnpm run build-analyzer
 ```
 
 #### **Bundle Size Problems**
+
 ```bash
 # Issue: Large bundle size
 # Solution: Implement code splitting
@@ -394,6 +435,7 @@ pnpm run build-analyzer
 ```
 
 #### **Performance Issues**
+
 ```bash
 # Issue: Slow animations
 # Solution: Use GPU acceleration
@@ -435,12 +477,14 @@ components/
 ## **🎯 Objective**: Establish core backend infrastructure for MVP development
 
 ### **🏗️ Systems to Build**
+
 - **Database** - PostgreSQL with Drizzle ORM
 - **Authentication** - better-auth configuration
 - **Payments** - Polar.sh integration
 - **Email** - Resend service setup
 
 ## **📋 Prerequisites**
+
 - Node.js 18+
 - PostgreSQL 14+ (local or cloud)
 - pnpm 8+
@@ -453,6 +497,7 @@ components/
 #### **Database Installation & Setup**
 
 **Local PostgreSQL (Development)**
+
 ```bash
 # macOS
 brew install postgresql@14
@@ -470,6 +515,7 @@ sudo -u postgres createdb aicopilotvibe_dev
 ```
 
 **Drizzle ORM Setup**
+
 ```bash
 # Install database dependencies
 pnpm install drizzle-orm drizzle-kit postgres
@@ -480,91 +526,83 @@ pnpm install dotenv tsx
 ```
 
 #### **Database Schema Design**
+
 ```typescript
 // db/schema.ts
-import { 
-  pgTable, 
-  uuid, 
-  varchar, 
-  text, 
-  timestamp, 
-  jsonb,
-  inet,
-  boolean 
-} from 'drizzle-orm/pg-core';
-import { relations } from 'drizzle-orm';
+import { pgTable, uuid, varchar, text, timestamp, jsonb, inet, boolean } from "drizzle-orm/pg-core"
+import { relations } from "drizzle-orm"
 
 // User Management
-export const users = pgTable('users', {
-  id: uuid('id').defaultRandom().primaryKey(),
-  email: varchar('email', { length: 255 }).notNull().unique(),
-  passwordHash: varchar('password_hash', { length: 255 }).notNull(),
-  subscriptionStatus: varchar('subscription_status', { length: 50 }).default('inactive'),
-  enterpriseEmail: varchar('enterprise_email', { length: 255 }),
-  enterprisePassword: varchar('enterprise_password', { length: 255 }),
-  countryCode: varchar('country_code', { length: 2 }),
-  paymentDate: timestamp('payment_date'),
-  subscriptionExpiresAt: timestamp('subscription_expires_at'),
-  emailVerified: boolean('email_verified').default(false),
-  createdAt: timestamp('created_at').defaultNow(),
-  updatedAt: timestamp('updated_at').defaultNow(),
-});
+export const users = pgTable("users", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  passwordHash: varchar("password_hash", { length: 255 }).notNull(),
+  subscriptionStatus: varchar("subscription_status", { length: 50 }).default("inactive"),
+  enterpriseEmail: varchar("enterprise_email", { length: 255 }),
+  enterprisePassword: varchar("enterprise_password", { length: 255 }),
+  countryCode: varchar("country_code", { length: 2 }),
+  paymentDate: timestamp("payment_date"),
+  subscriptionExpiresAt: timestamp("subscription_expires_at"),
+  emailVerified: boolean("email_verified").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+})
 
 // Order Tracking
-export const emailOrders = pgTable('email_orders', {
-  id: uuid('id').defaultRandom().primaryKey(),
-  userId: uuid('user_id').references(() => users.id, { onDelete: 'cascade' }),
-  status: varchar('status', { length: 50 }).default('pending'),
-  paymentId: varchar('payment_id', { length: 255 }),
-  polarSubscriptionId: varchar('polar_subscription_id', { length: 255 }),
-  assignedAdminId: uuid('assigned_admin_id').references(() => adminUsers.id),
-  adminNotes: text('admin_notes'),
-  priority: varchar('priority', { length: 20 }).default('normal'),
-  createdAt: timestamp('created_at').defaultNow(),
-  deliveredAt: timestamp('delivered_at'),
-  updatedAt: timestamp('updated_at').defaultNow(),
-});
+export const emailOrders = pgTable("email_orders", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: uuid("user_id").references(() => users.id, { onDelete: "cascade" }),
+  status: varchar("status", { length: 50 }).default("pending"),
+  paymentId: varchar("payment_id", { length: 255 }),
+  polarSubscriptionId: varchar("polar_subscription_id", { length: 255 }),
+  assignedAdminId: uuid("assigned_admin_id").references(() => adminUsers.id),
+  adminNotes: text("admin_notes"),
+  priority: varchar("priority", { length: 20 }).default("normal"),
+  createdAt: timestamp("created_at").defaultNow(),
+  deliveredAt: timestamp("delivered_at"),
+  updatedAt: timestamp("updated_at").defaultNow(),
+})
 
 // Admin System
-export const adminUsers = pgTable('admin_users', {
-  id: uuid('id').defaultRandom().primaryKey(),
-  email: varchar('email', { length: 255 }).notNull().unique(),
-  passwordHash: varchar('password_hash', { length: 255 }).notNull(),
-  role: varchar('role', { length: 50 }).default('admin'),
-  lastLogin: timestamp('last_login'),
-  createdAt: timestamp('created_at').defaultNow(),
-});
+export const adminUsers = pgTable("admin_users", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  passwordHash: varchar("password_hash", { length: 255 }).notNull(),
+  role: varchar("role", { length: 50 }).default("admin"),
+  lastLogin: timestamp("last_login"),
+  createdAt: timestamp("created_at").defaultNow(),
+})
 
 // Email Logging
-export const emailLogs = pgTable('email_logs', {
-  id: uuid('id').defaultRandom().primaryKey(),
-  userId: uuid('user_id').references(() => users.id),
-  emailType: varchar('email_type', { length: 50 }),
-  recipientEmail: varchar('recipient_email', { length: 255 }),
-  subject: varchar('subject', { length: 500 }),
-  status: varchar('status', { length: 50 }),
-  resendId: varchar('resend_id', { length: 255 }),
-  errorMessage: text('error_message'),
-  sentAt: timestamp('sent_at').defaultNow(),
-});
+export const emailLogs = pgTable("email_logs", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: uuid("user_id").references(() => users.id),
+  emailType: varchar("email_type", { length: 50 }),
+  recipientEmail: varchar("recipient_email", { length: 255 }),
+  subject: varchar("subject", { length: 500 }),
+  status: varchar("status", { length: 50 }),
+  resendId: varchar("resend_id", { length: 255 }),
+  errorMessage: text("error_message"),
+  sentAt: timestamp("sent_at").defaultNow(),
+})
 
 // Admin Activity
-export const adminActivity = pgTable('admin_activity', {
-  id: uuid('id').defaultRandom().primaryKey(),
-  adminId: uuid('admin_id').references(() => adminUsers.id),
-  action: varchar('action', { length: 100 }),
-  targetType: varchar('target_type', { length: 50 }),
-  targetId: uuid('target_id'),
-  details: jsonb('details'),
-  ipAddress: inet('ip_address'),
-  createdAt: timestamp('created_at').defaultNow(),
-});
+export const adminActivity = pgTable("admin_activity", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  adminId: uuid("admin_id").references(() => adminUsers.id),
+  action: varchar("action", { length: 100 }),
+  targetType: varchar("target_type", { length: 50 }),
+  targetId: uuid("target_id"),
+  details: jsonb("details"),
+  ipAddress: inet("ip_address"),
+  createdAt: timestamp("created_at").defaultNow(),
+})
 
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   orders: many(emailOrders),
   emailLogs: many(emailLogs),
-}));
+}))
 
 export const emailOrdersRelations = relations(emailOrders, ({ one }) => ({
   user: one(users, {
@@ -575,44 +613,47 @@ export const emailOrdersRelations = relations(emailOrders, ({ one }) => ({
     fields: [emailOrders.assignedAdminId],
     references: [adminUsers.id],
   }),
-}));
+}))
 
 export const adminUsersRelations = relations(adminUsers, ({ many }) => ({
   assignedOrders: many(emailOrders),
   activities: many(adminActivity),
-}));
+}))
 ```
 
 #### **Database Connection**
+
 ```typescript
 // lib/db.ts
-import { drizzle } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
-import * as schema from '@/db/schema';
+import { drizzle } from "drizzle-orm/postgres-js"
+import postgres from "postgres"
+import * as schema from "@/db/schema"
 
-const connectionString = process.env.DATABASE_URL!;
+const connectionString = process.env.DATABASE_URL!
 
 // Disable prefetch as it is not supported for "Transaction" pool mode
-export const client = postgres(connectionString, { prepare: false });
-export const db = drizzle(client, { schema });
+export const client = postgres(connectionString, { prepare: false })
+export const db = drizzle(client, { schema })
 ```
 
 #### **Migration Setup**
+
 ```typescript
 // drizzle.config.ts
-import type { Config } from 'drizzle-kit';
+import type { Config } from "drizzle-kit"
 
 export default {
-  schema: './db/schema.ts',
-  out: './db/migrations',
-  driver: 'pg',
+  schema: "./db/schema.ts",
+  out: "./db/migrations",
+  driver: "pg",
   dbCredentials: {
     connectionString: process.env.DATABASE_URL!,
   },
-} satisfies Config;
+} satisfies Config
 ```
 
 **Run Migrations**
+
 ```bash
 # Generate migration
 pnpm run db:generate
@@ -625,6 +666,7 @@ pnpm run db:seed
 ```
 
 #### **Authentication Setup**
+
 ```bash
 # Install better-auth
 pnpm install better-auth bcryptjs @types/bcryptjs
@@ -632,9 +674,9 @@ pnpm install better-auth bcryptjs @types/bcryptjs
 
 ```typescript
 // lib/auth.ts
-import { betterAuth } from 'better-auth';
-import { db } from './db';
-import { users } from '@/db/schema';
+import { betterAuth } from "better-auth"
+import { db } from "./db"
+import { users } from "@/db/schema"
 
 export const auth = betterAuth({
   database: db,
@@ -648,37 +690,39 @@ export const auth = betterAuth({
   user: {
     additionalFields: {
       subscriptionStatus: {
-        type: 'string',
-        defaultValue: 'inactive',
+        type: "string",
+        defaultValue: "inactive",
       },
     },
   },
-});
+})
 
-export type Session = typeof auth.$Infer.Session;
-export type User = typeof auth.$Infer.User;
+export type Session = typeof auth.$Infer.Session
+export type User = typeof auth.$Infer.User
 ```
 
 ### **Day 3-4: Payment Integration**
 
 #### **Polar.sh Setup**
+
 ```bash
 # Install Polar SDK
 pnpm install @polar-sh/sdk
 ```
 
 #### **Payment Service**
+
 ```typescript
 // lib/payments.ts
-import { Polar } from '@polar-sh/sdk';
-import { db } from './db';
-import { users, emailOrders } from '@/db/schema';
-import { eq } from 'drizzle-orm';
+import { Polar } from "@polar-sh/sdk"
+import { db } from "./db"
+import { users, emailOrders } from "@/db/schema"
+import { eq } from "drizzle-orm"
 
 export const polar = new Polar({
   accessToken: process.env.POLAR_SECRET_KEY!,
-  server: process.env.NODE_ENV === 'production' ? 'production' : 'sandbox',
-});
+  server: process.env.NODE_ENV === "production" ? "production" : "sandbox",
+})
 
 export async function createCheckoutSession(userId: string, userEmail: string) {
   try {
@@ -689,83 +733,85 @@ export async function createCheckoutSession(userId: string, userEmail: string) {
       customerEmail: userEmail,
       metadata: {
         userId,
-        source: 'web',
+        source: "web",
       },
-    });
+    })
 
-    return checkoutSession;
+    return checkoutSession
   } catch (error) {
-    console.error('Failed to create checkout session:', error);
-    throw new Error('Payment session creation failed');
+    console.error("Failed to create checkout session:", error)
+    throw new Error("Payment session creation failed")
   }
 }
 
 export async function handlePaymentSuccess(paymentId: string, userId: string) {
   try {
     // Update user subscription status
-    await db.update(users)
+    await db
+      .update(users)
       .set({
-        subscriptionStatus: 'paid',
+        subscriptionStatus: "paid",
         paymentDate: new Date(),
         subscriptionExpiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
         updatedAt: new Date(),
       })
-      .where(eq(users.id, userId));
+      .where(eq(users.id, userId))
 
     // Create order record
     await db.insert(emailOrders).values({
       userId,
-      status: 'pending',
+      status: "pending",
       paymentId,
-      priority: 'normal',
-    });
+      priority: "normal",
+    })
 
-    return true;
+    return true
   } catch (error) {
-    console.error('Failed to handle payment success:', error);
-    throw new Error('Payment processing failed');
+    console.error("Failed to handle payment success:", error)
+    throw new Error("Payment processing failed")
   }
 }
 ```
 
 #### **Webhook Handler**
+
 ```typescript
 // app/api/webhooks/polar/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import { polar, handlePaymentSuccess } from '@/lib/payments';
-import { headers } from 'next/headers';
+import { NextRequest, NextResponse } from "next/server"
+import { polar, handlePaymentSuccess } from "@/lib/payments"
+import { headers } from "next/headers"
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.text();
-    const signature = headers().get('polar-signature');
-    
+    const body = await request.text()
+    const signature = headers().get("polar-signature")
+
     if (!signature) {
-      return NextResponse.json({ error: 'Missing signature' }, { status: 400 });
+      return NextResponse.json({ error: "Missing signature" }, { status: 400 })
     }
 
     // Verify webhook signature
-    const event = polar.webhooks.verify(body, signature);
-    
+    const event = polar.webhooks.verify(body, signature)
+
     switch (event.type) {
-      case 'checkout.session.completed':
-        const { userId } = event.data.metadata;
-        await handlePaymentSuccess(event.data.id, userId);
-        break;
-        
-      case 'checkout.session.failed':
+      case "checkout.session.completed":
+        const { userId } = event.data.metadata
+        await handlePaymentSuccess(event.data.id, userId)
+        break
+
+      case "checkout.session.failed":
         // Handle payment failure
-        console.log('Payment failed:', event.data);
-        break;
-        
+        console.log("Payment failed:", event.data)
+        break
+
       default:
-        console.log('Unhandled event type:', event.type);
+        console.log("Unhandled event type:", event.type)
     }
 
-    return NextResponse.json({ received: true });
+    return NextResponse.json({ received: true })
   } catch (error) {
-    console.error('Webhook error:', error);
-    return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 });
+    console.error("Webhook error:", error)
+    return NextResponse.json({ error: "Webhook processing failed" }, { status: 500 })
   }
 }
 ```
@@ -773,72 +819,78 @@ export async function POST(request: NextRequest) {
 ### **Day 5: Email System Setup**
 
 #### **Resend Integration**
+
 ```bash
 # Install Resend
 pnpm install resend
 ```
 
 #### **Email Service**
+
 ```typescript
 // lib/email.ts
-import { Resend } from 'resend';
-import { db } from './db';
-import { emailLogs, users } from '@/db/schema';
-import { eq } from 'drizzle-orm';
+import { Resend } from "resend"
+import { db } from "./db"
+import { emailLogs, users } from "@/db/schema"
+import { eq } from "drizzle-orm"
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function sendWelcomeEmail(userId: string, email: string, name: string) {
   try {
     const emailResult = await resend.emails.send({
-      from: 'AI Copilot Vibe <noreply@aicopilotvibe.com>',
+      from: "AI Copilot Vibe <noreply@aicopilotvibe.com>",
       to: email,
-      subject: 'Welcome to AI Copilot Vibe! 🚀',
+      subject: "Welcome to AI Copilot Vibe! 🚀",
       html: `
         <h1>Welcome ${name}!</h1>
         <p>Thank you for joining AI Copilot Vibe. Your account has been created successfully.</p>
         <p>We'll notify you as soon as your enterprise email is ready (within 24 hours).</p>
         <p>Best regards,<br>The AI Copilot Vibe Team</p>
       `,
-    });
+    })
 
     // Log email
     await db.insert(emailLogs).values({
       userId,
-      emailType: 'welcome',
+      emailType: "welcome",
       recipientEmail: email,
-      subject: 'Welcome to AI Copilot Vibe! 🚀',
-      status: 'sent',
+      subject: "Welcome to AI Copilot Vibe! 🚀",
+      status: "sent",
       resendId: emailResult.data?.id,
-    });
+    })
 
-    return emailResult;
+    return emailResult
   } catch (error) {
-    console.error('Failed to send welcome email:', error);
-    
+    console.error("Failed to send welcome email:", error)
+
     // Log error
     await db.insert(emailLogs).values({
       userId,
-      emailType: 'welcome',
+      emailType: "welcome",
       recipientEmail: email,
-      subject: 'Welcome to AI Copilot Vibe! 🚀',
-      status: 'failed',
-      errorMessage: error instanceof Error ? error.message : 'Unknown error',
-    });
-    
-    throw error;
+      subject: "Welcome to AI Copilot Vibe! 🚀",
+      status: "failed",
+      errorMessage: error instanceof Error ? error.message : "Unknown error",
+    })
+
+    throw error
   }
 }
 
-export async function sendCredentialsEmail(userId: string, email: string, credentials: {
-  email: string;
-  password: string;
-}) {
+export async function sendCredentialsEmail(
+  userId: string,
+  email: string,
+  credentials: {
+    email: string
+    password: string
+  }
+) {
   try {
     const emailResult = await resend.emails.send({
-      from: 'AI Copilot Vibe <noreply@aicopilotvibe.com>',
+      from: "AI Copilot Vibe <noreply@aicopilotvibe.com>",
       to: email,
-      subject: 'Your GitHub Enterprise Email is Ready! 🎉',
+      subject: "Your GitHub Enterprise Email is Ready! 🎉",
       html: `
         <h1>Your Enterprise Email is Ready!</h1>
         <p>Your GitHub enterprise email credentials:</p>
@@ -850,33 +902,33 @@ export async function sendCredentialsEmail(userId: string, email: string, creden
         <p>Need help? Contact our support team.</p>
         <p>Best regards,<br>The AI Copilot Vibe Team</p>
       `,
-    });
+    })
 
     // Log email
     await db.insert(emailLogs).values({
       userId,
-      emailType: 'credentials',
+      emailType: "credentials",
       recipientEmail: email,
-      subject: 'Your GitHub Enterprise Email is Ready! 🎉',
-      status: 'sent',
+      subject: "Your GitHub Enterprise Email is Ready! 🎉",
+      status: "sent",
       resendId: emailResult.data?.id,
-    });
+    })
 
-    return emailResult;
+    return emailResult
   } catch (error) {
-    console.error('Failed to send credentials email:', error);
-    
+    console.error("Failed to send credentials email:", error)
+
     // Log error
     await db.insert(emailLogs).values({
       userId,
-      emailType: 'credentials',
+      emailType: "credentials",
       recipientEmail: email,
-      subject: 'Your GitHub Enterprise Email is Ready! 🎉',
-      status: 'failed',
-      errorMessage: error instanceof Error ? error.message : 'Unknown error',
-    });
-    
-    throw error;
+      subject: "Your GitHub Enterprise Email is Ready! 🎉",
+      status: "failed",
+      errorMessage: error instanceof Error ? error.message : "Unknown error",
+    })
+
+    throw error
   }
 }
 ```
@@ -919,6 +971,7 @@ JWT_SECRET="jwt-secret-for-additional-security"
 ## **📊 Track B Success Criteria**
 
 ### **Database**
+
 - [ ] PostgreSQL running locally
 - [ ] Database schema created
 - [ ] Migrations working
@@ -926,6 +979,7 @@ JWT_SECRET="jwt-secret-for-additional-security"
 - [ ] Drizzle ORM queries functional
 
 ### **Authentication**
+
 - [ ] better-auth configured
 - [ ] User registration working
 - [ ] Login/logout functional
@@ -933,6 +987,7 @@ JWT_SECRET="jwt-secret-for-additional-security"
 - [ ] Password hashing secure
 
 ### **Payments**
+
 - [ ] Polar.sh sandbox connected
 - [ ] Checkout session creation
 - [ ] Webhook handling working
@@ -940,6 +995,7 @@ JWT_SECRET="jwt-secret-for-additional-security"
 - [ ] Order creation functional
 
 ### **Email**
+
 - [ ] Resend service configured
 - [ ] Email templates created
 - [ ] Email sending functional
@@ -949,6 +1005,7 @@ JWT_SECRET="jwt-secret-for-additional-security"
 ## **🧪 Testing**
 
 ### **Database Testing**
+
 ```bash
 # Test database connection
 pnpm run db:studio
@@ -961,6 +1018,7 @@ node -e "
 ```
 
 ### **Authentication Testing**
+
 ```bash
 # Test user creation
 curl -X POST http://localhost:3000/api/auth/signup \
@@ -969,6 +1027,7 @@ curl -X POST http://localhost:3000/api/auth/signup \
 ```
 
 ### **Payment Testing**
+
 ```bash
 # Test checkout creation
 curl -X POST http://localhost:3000/api/payments/checkout \
@@ -977,6 +1036,7 @@ curl -X POST http://localhost:3000/api/payments/checkout \
 ```
 
 ### **Email Testing**
+
 ```bash
 # Test welcome email
 curl -X POST http://localhost:3000/api/emails/welcome \
@@ -987,6 +1047,7 @@ curl -X POST http://localhost:3000/api/emails/welcome \
 ## **🚨 Troubleshooting**
 
 ### **Database Issues**
+
 ```bash
 # Connection refused
 sudo systemctl start postgresql
@@ -999,6 +1060,7 @@ pnpm run db:reset
 ```
 
 ### **Authentication Issues**
+
 ```bash
 # Session not working
 # Check BETTER_AUTH_SECRET length (must be 32+ chars)
@@ -1006,6 +1068,7 @@ pnpm run db:reset
 ```
 
 ### **Payment Issues**
+
 ```bash
 # Webhook not receiving
 # Check webhook URL in Polar dashboard
@@ -1014,6 +1077,7 @@ pnpm run db:reset
 ```
 
 ### **Email Issues**
+
 ```bash
 # Email not sending
 # Verify RESEND_API_KEY is valid
@@ -1047,6 +1111,7 @@ app/api/
 ## **🚀 Next Steps**
 
 ### **After completing both tracks:**
+
 1. **Integration Testing**: Test all systems together
 2. **Security Review**: Audit authentication and payment flows
 3. **Performance Testing**: Database query optimization
@@ -1056,12 +1121,14 @@ app/api/
 ## **🚨 Escalation Procedures**
 
 ### **If Track A Fails**
+
 1. Fallback to shadcn/ui only
 2. Skip advanced animations
 3. Focus on core functionality
 4. Reassess timeline impact
 
 ### **If Track B Fails**
+
 1. Use mock data for frontend development
 2. Implement service stubs
 3. Continue with UI development
@@ -1070,18 +1137,21 @@ app/api/
 ## **📅 Daily Progress Tracking**
 
 ### **Day 1-2 Targets**
+
 - [ ] shadcn/ui setup complete
 - [ ] Database schema designed
 - [ ] Authentication planning finished
 - [ ] Payment service verification started
 
 ### **Day 3-4 Targets**
+
 - [ ] ReactBits and Hover.dev integrated
 - [ ] Database migrations working
 - [ ] Authentication system functional
 - [ ] Payment sandbox connected
 
 ### **Day 5 Targets**
+
 - [ ] MagicUI effects implemented
 - [ ] Email service configured
 - [ ] All systems integration tested

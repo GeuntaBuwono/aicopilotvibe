@@ -5,6 +5,7 @@
 ### **Product Overview**
 
 #### **Business Model**
+
 - **Product**: GitHub Enterprise Email SaaS providing GitHub Copilot access
 - **Target Market**: Global VSCode developers seeking AI coding assistance
 - **Pricing Strategy**: $19.99/month (competitive to GitHub Enterprise $39/month)
@@ -12,6 +13,7 @@
 - **Market Scope**: Global reach with no geographic restrictions
 
 #### **Value Proposition**
+
 - **Immediate Access**: 24-hour delivery guarantee
 - **Cost Effective**: 50% cheaper than GitHub Enterprise
 - **Global Reach**: Works with any VSCode setup worldwide
@@ -21,6 +23,7 @@
 ### **Market Analysis**
 
 #### **Target Market Research**
+
 - **Primary**: VSCode developers seeking GitHub Copilot access
 - **Secondary**: Enterprise developers needing AI-powered coding assistance
 - **Market Size**: 26M+ VSCode users globally
@@ -28,12 +31,14 @@
 - **Geographic Distribution**: Global developer community
 
 #### **Competitive Landscape**
+
 - **Direct Competition**: GitHub Copilot official subscriptions
 - **Indirect Competition**: AI coding assistants (Tabnine, Codeium, CodeT5)
 - **Competitive Advantage**: Lower price, immediate access, no enterprise requirements
 - **Market Gap**: Affordable individual access to enterprise-grade AI tools
 
 #### **Customer Segments**
+
 1. **Individual Developers**: Personal projects, freelancers
 2. **Small Teams**: Startups, small agencies
 3. **Enterprise Developers**: Corporate developers without enterprise access
@@ -42,6 +47,7 @@
 ### **Success Metrics**
 
 #### **Business KPIs**
+
 - **Revenue Growth**: Monthly recurring revenue targets
 - **Customer Acquisition**: Conversion rate optimization
 - **Customer Retention**: Monthly churn rate < 5%
@@ -49,6 +55,7 @@
 - **User Satisfaction**: Net Promoter Score > 8/10
 
 #### **Operational Metrics**
+
 - **Fulfillment SLA**: 24-hour delivery compliance > 98%
 - **Support Quality**: Response time < 2 hours
 - **System Reliability**: Uptime > 99.9%
@@ -58,6 +65,7 @@
 ### **Go-to-Market Strategy**
 
 #### **Launch Strategy**
+
 1. **MVP Launch**: Core functionality with manual processes
 2. **Early Adopters**: Developer community engagement
 3. **Iterative Improvement**: User feedback incorporation
@@ -65,6 +73,7 @@
 5. **Market Expansion**: Geographic and segment growth
 
 #### **Customer Acquisition**
+
 - **Organic Growth**: SEO-optimized content marketing
 - **Developer Communities**: GitHub, Stack Overflow, Reddit engagement
 - **Content Marketing**: Technical tutorials and guides
@@ -72,6 +81,7 @@
 - **Paid Advertising**: Targeted developer-focused campaigns
 
 #### **Retention Strategy**
+
 - **Onboarding Excellence**: Smooth user experience
 - **Continuous Value**: Regular feature updates
 - **Community Building**: Developer community engagement
@@ -81,6 +91,7 @@
 ### **Financial Projections**
 
 #### **Revenue Model**
+
 - **Monthly Subscription**: $19.99 per user
 - **Target Users**: 1,000 users by Month 3
 - **Revenue Target**: $20,000 MRR by Month 3
@@ -88,6 +99,7 @@
 - **Annual Revenue**: $240,000+ by Year 1
 
 #### **Cost Structure**
+
 - **Technology Costs**: Infrastructure, tools, services
 - **Operational Costs**: Manual fulfillment, support
 - **Marketing Costs**: Customer acquisition campaigns
@@ -101,6 +113,7 @@
 ### **Architecture Overview**
 
 #### **System Design Philosophy**
+
 - **Ship-First Approach**: Prioritize MVP delivery with incremental improvements
 - **Parallel Development**: UI and backend workstreams for faster delivery
 - **Production Checkpoints**: Clear go/no-go decisions for releases
@@ -109,6 +122,7 @@
 #### **Technology Stack**
 
 **Frontend & Core Framework**
+
 ```typescript
 // Primary Framework - ✅ IMPLEMENTED
 - Next.js 15.3.1 (App Router, Server Components)
@@ -128,6 +142,7 @@
 ```
 
 **Backend & Database**
+
 ```typescript
 // Database - ❌ TO BE IMPLEMENTED
 - PostgreSQL (Alibaba Cloud RDS)
@@ -141,6 +156,7 @@
 ```
 
 **External Services**
+
 ```typescript
 // Payment Processing - ❌ TO BE IMPLEMENTED
 - Polar.sh (Primary payment system)
@@ -164,6 +180,7 @@
 ### **Application Architecture**
 
 #### **Directory Structure**
+
 ```
 project-root/
 ├── app/                          # Next.js App Router
@@ -200,6 +217,7 @@ project-root/
 ```
 
 #### **API Design**
+
 ```typescript
 // Authentication APIs
 /api/auth/                       # User authentication
@@ -223,6 +241,7 @@ project-root/
 ### **Database Design**
 
 #### **Core Tables**
+
 ```sql
 -- User Management
 users (id, email, password_hash, subscription_status, enterprise_email, created_at)
@@ -242,6 +261,7 @@ admin_activity (id, admin_id, action, target_type, target_id, created_at)
 ```
 
 #### **Relationships**
+
 - Users → Orders (1:many)
 - Admin Users → Orders (1:many assignments)
 - Admin Users → Content Updates (1:many)
@@ -251,6 +271,7 @@ admin_activity (id, admin_id, action, target_type, target_id, created_at)
 ### **Security Architecture**
 
 #### **Authentication & Authorization**
+
 ```typescript
 // User Authentication
 - Email/password with bcrypt hashing
@@ -272,6 +293,7 @@ admin_activity (id, admin_id, action, target_type, target_id, created_at)
 ```
 
 #### **Data Protection**
+
 ```typescript
 // Encryption
 - Enterprise email/password encryption at rest
@@ -289,6 +311,7 @@ admin_activity (id, admin_id, action, target_type, target_id, created_at)
 ### **Deployment Architecture**
 
 #### **Production Infrastructure**
+
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
 │   Vercel        │    │  Alibaba Cloud   │    │  Third-party    │
@@ -302,6 +325,7 @@ admin_activity (id, admin_id, action, target_type, target_id, created_at)
 ```
 
 #### **CI/CD Pipeline**
+
 ```yaml
 # GitHub Actions Workflow
 - Code Quality: Linting, type checking, testing
@@ -318,6 +342,7 @@ admin_activity (id, admin_id, action, target_type, target_id, created_at)
 ### **Prerequisites**
 
 #### **Required Software**
+
 ```bash
 # Core Development Tools
 ✓ Node.js 18+ (recommend 20+)
@@ -334,6 +359,7 @@ git --version     # Should be 2.30+
 ```
 
 #### **Development Accounts**
+
 ```bash
 # Required Service Accounts
 □ GitHub account (code repository)
@@ -348,6 +374,7 @@ git --version     # Should be 2.30+
 ### **Initial Setup**
 
 #### **1. Repository Setup**
+
 ```bash
 # Clone the repository
 git clone https://github.com/your-org/aicopilotvibe.git
@@ -361,6 +388,7 @@ pnpm run dev --dry-run
 ```
 
 #### **2. Environment Configuration**
+
 ```bash
 # Copy environment template
 cp .env.example .env.local
@@ -371,6 +399,7 @@ cp .env.example .env.local
 #### **3. Database Setup**
 
 **macOS (using Homebrew):**
+
 ```bash
 # Install PostgreSQL
 brew install postgresql@14
@@ -385,6 +414,7 @@ psql -U postgres -d aicopilotvibe_dev -c "SELECT version();"
 ```
 
 **Windows (using chocolatey):**
+
 ```bash
 # Install PostgreSQL
 choco install postgresql
@@ -397,6 +427,7 @@ net start postgresql-x64-14
 ```
 
 **Ubuntu/Debian:**
+
 ```bash
 # Install PostgreSQL
 sudo apt update
@@ -414,6 +445,7 @@ sudo -u postgres createdb aicopilotvibe_dev
 #### **4. Environment Variables**
 
 **Development Environment (.env.local)**
+
 ```bash
 # Database Configuration
 DATABASE_URL="postgresql://postgres:password@localhost:5432/aicopilotvibe_dev"
@@ -450,6 +482,7 @@ SENTRY_DSN=""
 ```
 
 #### **Generate Secure Keys**
+
 ```bash
 # Generate random keys for development
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
@@ -461,6 +494,7 @@ openssl rand -hex 32
 ### **Development Workflow**
 
 #### **Daily Development Commands**
+
 ```bash
 # Start development server
 pnpm run dev
@@ -484,6 +518,7 @@ pnpm run type-check      # TypeScript checking
 ```
 
 #### **Package.json Scripts**
+
 ```json
 {
   "scripts": {
@@ -493,17 +528,17 @@ pnpm run type-check      # TypeScript checking
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
-    
+
     "db:generate": "drizzle-kit generate:pg",
     "db:migrate": "drizzle-kit push:pg",
     "db:seed": "tsx db/seed.ts",
     "db:studio": "drizzle-kit studio",
     "db:reset": "pnpm run db:migrate && pnpm run db:seed",
-    
+
     "test": "jest",
     "test:watch": "jest --watch",
     "test:e2e": "playwright test",
-    
+
     "prepare": "husky install"
   }
 }
@@ -514,6 +549,7 @@ pnpm run type-check      # TypeScript checking
 #### **VS Code Setup**
 
 **Required Extensions**
+
 ```json
 // .vscode/extensions.json
 {
@@ -530,6 +566,7 @@ pnpm run type-check      # TypeScript checking
 ```
 
 **Settings Configuration**
+
 ```json
 // .vscode/settings.json
 {
@@ -549,6 +586,7 @@ pnpm run type-check      # TypeScript checking
 ### **Required Dependencies**
 
 #### **Core Libraries Installation**
+
 ```bash
 # Install missing dependencies for Phase 0
 pnpm install \
@@ -574,6 +612,7 @@ pnpm list better-auth drizzle-orm postgres resend
 ```
 
 #### **Database Migration & Seeding**
+
 ```bash
 # Initialize database
 pnpm run db:generate
@@ -587,57 +626,59 @@ pnpm run db:studio
 ### **Testing Setup**
 
 #### **Jest Configuration**
+
 ```javascript
 // jest.config.js
-const nextJest = require('next/jest');
+const nextJest = require("next/jest")
 
 const createJestConfig = nextJest({
-  dir: './',
-});
+  dir: "./",
+})
 
 const customJestConfig = {
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  testEnvironment: 'jest-environment-jsdom',
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  testEnvironment: "jest-environment-jsdom",
   moduleNameMapping: {
-    '^@/(.*)$': '<rootDir>/$1',
+    "^@/(.*)$": "<rootDir>/$1",
   },
-};
+}
 
-module.exports = createJestConfig(customJestConfig);
+module.exports = createJestConfig(customJestConfig)
 ```
 
 #### **Playwright Configuration**
+
 ```typescript
 // playwright.config.ts
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test"
 
 export default defineConfig({
-  testDir: './tests/e2e',
+  testDir: "./tests/e2e",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  reporter: "html",
   use: {
-    baseURL: 'http://localhost:3000',
-    trace: 'on-first-retry',
+    baseURL: "http://localhost:3000",
+    trace: "on-first-retry",
   },
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
     },
     {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      name: "webkit",
+      use: { ...devices["Desktop Safari"] },
     },
   ],
   webServer: {
-    command: 'pnpm run dev',
-    url: 'http://localhost:3000',
+    command: "pnpm run dev",
+    url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
   },
-});
+})
 ```
 
 ### **Troubleshooting**
@@ -645,6 +686,7 @@ export default defineConfig({
 #### **Common Issues**
 
 **Database Connection Issues**
+
 ```bash
 # Error: connection refused
 # Fix: Ensure PostgreSQL is running
@@ -661,6 +703,7 @@ sudo -u postgres psql -c "ALTER USER postgres CREATEDB;"
 ```
 
 **Port Issues**
+
 ```bash
 # Error: Port 3000 already in use
 # Fix: Kill the process or use different port
@@ -669,6 +712,7 @@ pnpm run dev -- -p 3001       # Use different port
 ```
 
 **Module Not Found Errors**
+
 ```bash
 # Error: Cannot find module 'better-auth'
 # Fix: Install missing dependencies
@@ -693,24 +737,28 @@ After completing the development setup:
 ## **🔗 Strategic Roadmap**
 
 ### **Phase 1: MVP Launch (Weeks 1-4)**
+
 - **Core Product**: Basic subscription and fulfillment
 - **Market Entry**: Initial customer acquisition
 - **Validation**: Problem-solution fit confirmation
 - **Operations**: Manual processes establishment
 
 ### **Phase 2: Optimization (Weeks 5-8)**
+
 - **Process Improvement**: Efficiency optimization
 - **Customer Experience**: UX enhancement
 - **Market Expansion**: Growth acceleration
 - **Automation**: Process automation beginning
 
 ### **Phase 3: Scale (Months 3-6)**
+
 - **Market Leadership**: Competitive positioning
 - **Operational Excellence**: Scalable processes
 - **Product Innovation**: Advanced features
 - **Geographic Expansion**: International markets
 
 ### **Phase 4: Evolution (Months 7-12)**
+
 - **Platform Expansion**: Additional services
 - **Enterprise Sales**: B2B market entry
 - **Strategic Partnerships**: Industry collaborations
