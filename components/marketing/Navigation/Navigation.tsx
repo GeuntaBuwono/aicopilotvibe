@@ -41,6 +41,12 @@ export function Navigation() {
                 >
                   <Link href="#comparison">Comparison</Link>
                 </ButtonHover>
+                <ButtonHover
+                  variant="lift"
+                  className="text-foreground rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
+                >
+                  <Link href="#faq">FAQ</Link>
+                </ButtonHover>
               </div>
             </div>
 
@@ -102,6 +108,14 @@ export function Navigation() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Pricing
+              </Link>
+              <Link
+                href="#faq"
+                className="text-foreground hover:text-primary animate-in slide-in-from-left-4 block px-3 py-2 text-base font-medium transition-colors duration-300"
+                style={{ animationDelay: "175ms" }}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                FAQ
               </Link>
               <Link
                 href="#testimonials"

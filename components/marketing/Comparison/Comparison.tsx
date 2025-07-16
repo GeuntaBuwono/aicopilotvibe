@@ -57,7 +57,7 @@ const comparisonData = [
 
 export function Comparison() {
   return (
-    <section id="comparison" className="bg-background py-20 lg:py-32">
+    <section id="comparison" className="py-20 lg:py-32">
       <div className="container mx-auto px-4">
         <BlurFade delay={0.2} className="mb-16 text-center">
           <AnimatedGradientText

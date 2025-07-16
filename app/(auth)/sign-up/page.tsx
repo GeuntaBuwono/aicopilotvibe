@@ -227,7 +227,7 @@ export default function SignUpPage() {
               <div className="space-y-2">
                 <h3 className="text-lg font-semibold">Early Access Pricing</h3>
                 <div className="text-3xl font-bold text-blue-600">$150/month</div>
-                <p className="text-muted-foreground text-sm">Limited time offer • 24h setup • No refunds</p>
+                <p className="text-muted-foreground text-sm">Limited time offer • 24h setup • Early access</p>
                 <div className="text-muted-foreground flex justify-center space-x-4 text-xs">
                   <span className="flex items-center">
                     <div className="mr-1 h-2 w-2 rounded-full bg-green-500"></div>

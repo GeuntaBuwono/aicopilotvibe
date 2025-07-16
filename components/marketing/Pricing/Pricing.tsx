@@ -32,7 +32,7 @@ const pricingPlans = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="bg-background py-20 lg:py-32">
+    <section id="pricing" className="py-20 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-16 text-center">
@@ -60,7 +60,7 @@ export function Pricing() {
             duration={1.2}
             className="text-muted-foreground mx-auto mt-6 max-w-3xl text-xl"
           >
-            Limited users only. GitHub access with daily token resets. No trial, no refund, no guarantee.
+            Limited users only. GitHub access with daily token resets for developers.
           </TextAnimate>
         </div>
 
@@ -159,23 +159,22 @@ export function Pricing() {
 
           <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
             <div className="text-muted-foreground text-lg font-medium">24-hour setup</div>
-            <div className="text-muted-foreground text-lg font-medium">No trial</div>
-            <div className="text-muted-foreground text-lg font-medium">No refund</div>
-            <div className="text-muted-foreground text-lg font-medium">No guarantee</div>
+            <div className="text-muted-foreground text-lg font-medium">Limited availability</div>
+            <div className="text-muted-foreground text-lg font-medium">Early access</div>
           </div>
         </div>
 
         {/* Service Policy */}
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center rounded-full bg-orange-500/10 px-6 py-3 text-orange-600">
+          <div className="inline-flex items-center rounded-full bg-blue-500/10 px-6 py-3 text-blue-600">
             <svg className="mr-2 hidden h-5 w-5 md:flex" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
-                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                d="M13 2a1 1 0 011 1v8.93l.707-.707a1 1 0 011.414 1.414l-2.5 2.5a1 1 0 01-1.414 0l-2.5-2.5a1 1 0 111.414-1.414l.707.707V3a1 1 0 011-1zm-7 2a1 1 0 00-1 1v8.93l-.707-.707a1 1 0 00-1.414 1.414l2.5 2.5a1 1 0 001.414 0l2.5-2.5a1 1 0 10-1.414-1.414L6 13.93V5a1 1 0 00-1-1z"
                 clipRule="evenodd"
               />
             </svg>
-            <span className="font-medium">No refund policy - Purchase at your own risk</span>
+            <span className="font-medium">Questions? Check our FAQ section below</span>
           </div>
         </div>
       </div>
