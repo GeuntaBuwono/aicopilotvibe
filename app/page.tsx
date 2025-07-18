@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import { BorderAnimatedCard } from "@/components/animations/card-animations"
+import { PRODUCT_PRICE } from "@/mock/pricing"
 import { ParticleBackground } from "components/magic/particle-background"
 import { BlurFade } from "components/magicui/blur-fade"
 import { MagicCard } from "components/magicui/magic-card"
@@ -13,16 +14,14 @@ import { Pricing } from "components/marketing/Pricing/Pricing"
 
 export const metadata: Metadata = {
   title: "AI Copilot Vibe - Never Hit Token Limits Again",
-  description:
-    "Email service with GitHub access and daily token resets for developers. Stop hitting limits in Cursor, Copilot & Claude Code. Early access $150/month.",
+  description: `Email service with GitHub access and daily token resets for developers. Stop hitting limits in Cursor, Copilot & Claude Code. Early access $${PRODUCT_PRICE}/month.`,
   twitter: {
     card: "summary_large_image",
   },
   openGraph: {
     url: "https://aicopilotvibe.com/",
     title: "AI Copilot Vibe - Never Hit Token Limits Again",
-    description:
-      "Email service with GitHub access and daily token resets for developers. Stop hitting limits in Cursor, Copilot & Claude Code. Early access $150/month.",
+    description: `Email service with GitHub access and daily token resets for developers. Stop hitting limits in Cursor, Copilot & Claude Code. Early access $${PRODUCT_PRICE}/month.`,
     images: [
       {
         width: 1200,

@@ -24,7 +24,7 @@
     "baseUrl": ".",
     "types": [
       "node",
-      "jest",
+      "vitest/globals",
       "@testing-library/jest-dom"
     ],
     "plugins": [
@@ -45,6 +45,9 @@
       "@/lib/*": [
         "./lib/*"
       ],
+      "@/mock/*": [
+        "./mock/*"
+      ],
       "@/hooks/*": [
         "./hooks/*"
       ],
@@ -53,6 +56,9 @@
       ],
       "@/db/*": [
         "./db/*"
+      ],
+      "@/types/*": [
+        "./types/*"
       ]
     }
   },
@@ -60,11 +66,12 @@
     "**/*.mjs",
     "**/*.ts",
     "**/*.tsx",
+    ".next-dev/types/**/*.ts",
     ".next/types/**/*.ts",
     "eslint.config.mjs",
     "jest.config.js",
     "next-env.d.ts",
-    ".next-dev/types/**/*.ts"
+    ".next-dev-new/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

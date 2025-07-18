@@ -1,0 +1,5 @@
+export type OrderStatus = "pending" | "processing" | "delivered" | "cancelled"
+export type OrderPriority = "low" | "normal" | "high" | "urgent"
+export type EmailStatus = "sent" | "failed" | "pending"
+export type UserRole = "user" | "admin" | "super_admin"
+export type SubscriptionStatus = "inactive" | "active" | "expired" | "cancelled" | "paid"
