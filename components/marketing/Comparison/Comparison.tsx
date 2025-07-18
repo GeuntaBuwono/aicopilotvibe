@@ -6,6 +6,7 @@ import { BlurFade } from "@/components/magicui/blur-fade"
 import { MagicCard } from "@/components/magicui/magic-card"
 import { ShineBorder } from "@/components/magicui/shine-border"
 import { Badge } from "@/components/ui/badge"
+import { PRODUCT_PRICE } from "@/mock/pricing"
 
 const comparisonData = [
   {
@@ -44,7 +45,7 @@ const comparisonData = [
   {
     tool: "AI Copilot Vibe",
     tokenLimits: "Unlimited with daily resets",
-    price: "$150/month",
+    price: `$${PRODUCT_PRICE}/month`,
     dailyReset: true,
     limitations: "No token limits ever",
     features: [
@@ -145,7 +146,7 @@ export function Comparison() {
             </p>
             <ShineBorder shineColor={["#3b82f6", "#8b5cf6"]} className="inline-block">
               <button className="rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 px-8 py-3 font-semibold text-white transition-all duration-300 hover:from-blue-600 hover:to-purple-600">
-                Get Early Access - $150/month
+                Get Early Access - ${PRODUCT_PRICE}/month
               </button>
             </ShineBorder>
           </div>

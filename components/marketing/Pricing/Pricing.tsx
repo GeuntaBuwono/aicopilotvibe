@@ -1,34 +1,15 @@
 "use client"
 
-import { ButtonHover } from "@/components/animations/button-hover"
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
 import { AnimatedList } from "@/components/magicui/animated-list"
 import { NumberTicker } from "@/components/magicui/number-ticker"
-import { PulsatingButton } from "@/components/magicui/pulsating-button"
 import { ShineBorder } from "@/components/magicui/shine-border"
 import { TextAnimate } from "@/components/magicui/text-animate"
+import { CheckoutButton, SecureCheckoutButton } from "@/components/payment/CheckoutButton"
+import { PRICING_PLANS } from "@/mock/products"
 import { MagicCard } from "../../magicui/magic-card"
 
-const pricingPlans = [
-  {
-    name: "GitHub Access + Token Reset",
-    description: "Email service with GitHub access and unlimited daily token resets",
-    price: 150,
-    originalPrice: 899,
-    features: [
-      "GitHub Access Included",
-      "Daily Token Resets",
-      "No Token Limits",
-      "24-Hour Setup Process",
-      "Email Delivery",
-      "Limited Users Only",
-      "No Social Media Presence",
-    ],
-    cta: "Get Early Access",
-    popular: true,
-    color: "gradient",
-  },
-]
+const pricingPlans = PRICING_PLANS
 
 export function Pricing() {
   return (
@@ -87,15 +68,18 @@ export function Pricing() {
                     <div className="space-y-2">
                       <div className="flex items-center justify-center space-x-2">
                         <span className="text-foreground text-4xl font-bold">
-                          <NumberTicker value={plan.price} prefix="$" delay={1.5 + index * 0.4} />
+                          <NumberTicker
+                            startValue={plan.originalPrice}
+                            value={plan.price}
+                            prefix="$"
+                            delay={1.5 + index * 0.4}
+                          />
                         </span>
                         <span className="text-muted-foreground">/month</span>
                       </div>
                       <div className="flex items-center justify-center space-x-2">
                         <span className="text-muted-foreground text-sm line-through">${plan.originalPrice}</span>
-                        <span className="text-sm font-medium text-green-600">
-                          Save {Math.round((1 - plan.price / plan.originalPrice) * 100)}%
-                        </span>
+                        <span className="text-sm font-medium text-green-600">Save {plan.discountPercentage}%</span>
                       </div>
                     </div>
                   </div>
@@ -121,28 +105,13 @@ export function Pricing() {
 
                   <div className="mt-auto">
                     {plan.color === "gradient" ? (
-                      <PulsatingButton
-                        className="w-full py-3 text-lg font-semibold"
-                        onClick={() => (window.location.href = "/sign-up")}
-                      >
+                      <SecureCheckoutButton className="w-full py-3 text-lg font-semibold">
                         {plan.cta}
-                      </PulsatingButton>
+                      </SecureCheckoutButton>
                     ) : plan.popular ? (
-                      <PulsatingButton
-                        className="w-full py-3 text-lg font-semibold"
-                        pulseColor="139, 92, 246"
-                        duration="2s"
-                        onClick={() => (window.location.href = "/sign-up")}
-                      >
-                        {plan.cta}
-                      </PulsatingButton>
+                      <CheckoutButton className="w-full py-3 text-lg font-semibold">{plan.cta}</CheckoutButton>
                     ) : (
-                      <ButtonHover
-                        variant="slide"
-                        className="border-border text-foreground bg-background w-full rounded-lg border-2 py-3 text-lg font-semibold transition-all duration-300 hover:text-white"
-                      >
-                        {plan.cta}
-                      </ButtonHover>
+                      <CheckoutButton className="w-full py-3 text-lg font-semibold">{plan.cta}</CheckoutButton>
                     )}
                   </div>
                 </div>

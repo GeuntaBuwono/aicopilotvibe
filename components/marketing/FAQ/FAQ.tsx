@@ -9,36 +9,44 @@ import { TextAnimate } from "@/components/magicui/text-animate"
 const faqData = [
   {
     question: "What is your refund policy?",
-    answer: "We have a strict no refund policy. All purchases are final and non-refundable. Please consider your purchase carefully before proceeding. This service is provided as-is with no guarantees."
+    answer:
+      "We have a strict no refund policy. All purchases are final and non-refundable. Please consider your purchase carefully before proceeding. This service is provided as-is with no guarantees.",
   },
   {
     question: "How long does setup take?",
-    answer: "Setup typically takes 24 hours after payment confirmation. You'll receive an email with your GitHub access credentials and instructions once setup is complete."
+    answer:
+      "Setup typically takes 24 hours after payment confirmation. You'll receive an email with your GitHub access credentials and instructions once setup is complete.",
   },
   {
     question: "Is there a trial period?",
-    answer: "No, we do not offer trial periods. This is an early access service with limited availability for developers who need unlimited AI coding assistance."
+    answer:
+      "No, we do not offer trial periods. This is an early access service with limited availability for developers who need unlimited AI coding assistance.",
   },
   {
     question: "What happens if the service doesn't work for me?",
-    answer: "Due to our no refund policy, we cannot provide refunds if the service doesn't meet your expectations. We recommend carefully reviewing the service details before purchasing."
+    answer:
+      "Due to our no refund policy, we cannot provide refunds if the service doesn't meet your expectations. We recommend carefully reviewing the service details before purchasing.",
   },
   {
     question: "How do daily token resets work?",
-    answer: "Your tokens reset automatically every 24 hours, giving you unlimited access to AI coding assistants like Cursor, Copilot, and Claude Code without hitting rate limits."
+    answer:
+      "Your tokens reset automatically every 24 hours, giving you unlimited access to AI coding assistants like Cursor, Copilot, and Claude Code without hitting rate limits.",
   },
   {
     question: "What GitHub access do I get?",
-    answer: "You'll receive access to GitHub repositories through our email service, allowing you to bypass token limitations in popular AI coding tools."
+    answer:
+      "You'll receive access to GitHub repositories through our email service, allowing you to bypass token limitations in popular AI coding tools.",
   },
   {
     question: "Is there any guarantee the service will work?",
-    answer: "No, we provide no guarantees. This is an early access service offered at your own risk. Please understand the terms before purchasing."
+    answer:
+      "No, we provide no guarantees. This is an early access service offered at your own risk. Please understand the terms before purchasing.",
   },
   {
     question: "Can I cancel my subscription?",
-    answer: "While you can cancel future billing, any payments already made are non-refundable according to our no refund policy."
-  }
+    answer:
+      "While you can cancel future billing, any payments already made are non-refundable according to our no refund policy.",
+  },
 ]
 
 export function FAQ() {
@@ -82,36 +90,36 @@ export function FAQ() {
         </div>
 
         {/* FAQ Items */}
-        <AnimatedList
-          className="space-y-4"
-          delay={0.8}
-          stagger={0.1}
-          animation="slideUp"
-        >
+        <AnimatedList className="space-y-4" delay={0.8} stagger={0.1} animation="slideUp">
           {faqData.map((faq, index) => (
             <MagicCard key={index} className="overflow-hidden">
               <div className="bg-card/50 backdrop-blur-sm">
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full px-6 py-4 text-left transition-all duration-200 hover:bg-muted/20 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  className="hover:bg-muted/20 focus:ring-primary/20 w-full px-6 py-4 text-left transition-all duration-200 focus:ring-2 focus:outline-none"
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className="text-foreground text-lg font-semibold pr-4">
-                      {faq.question}
-                    </h3>
-                    <div className={`transition-transform duration-200 ${openIndex === index ? 'rotate-180' : ''}`}>
-                      <svg className="h-5 w-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <h3 className="text-foreground pr-4 text-lg font-semibold">{faq.question}</h3>
+                    <div className={`transition-transform duration-200 ${openIndex === index ? "rotate-180" : ""}`}>
+                      <svg
+                        className="text-muted-foreground h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
                   </div>
                 </button>
-                
-                <div className={`overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
                   <div className="px-6 pb-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {faq.answer}
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
                     {index === 0 && (
                       <div className="mt-4 inline-flex items-center rounded-full bg-orange-500/10 px-4 py-2 text-orange-600">
                         <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
@@ -148,8 +156,8 @@ export function FAQ() {
               </div>
               <h3 className="text-foreground mb-2 text-lg font-semibold">Important Service Notice</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                This is an early access service with limited availability. No trial, no refund, no guarantee. 
-                All sales are final. Please read our policies carefully before purchasing.
+                This is an early access service with limited availability. No trial, no refund, no guarantee. All sales
+                are final. Please read our policies carefully before purchasing.
               </p>
             </div>
           </MagicCard>

@@ -5,10 +5,11 @@ import { PulseButton } from "@/components/animations/button-hover"
 import { FloatingElements } from "@/components/magic/interactive-elements"
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
 import { TextAnimate } from "@/components/magicui/text-animate"
+import { PRODUCT_PRICE } from "@/mock/pricing"
 
 export function Hero() {
   return (
-    <section className="from-background via-background to-background relative overflow-hidden ">
+    <section className="from-background via-background to-background relative overflow-hidden">
       {/* Enhanced Background decorations */}
       <FloatingElements count={8} className="opacity-30" />
       <div className="absolute inset-0">
@@ -93,7 +94,7 @@ export function Hero() {
                 duration={1.2}
                 className="text-foreground text-4xl font-bold"
               >
-                $150
+                {`$${PRODUCT_PRICE}`}
               </TextAnimate>
               <div className="text-muted-foreground text-sm">Early Access</div>
             </div>
@@ -107,7 +108,7 @@ export function Hero() {
                 className="w-full px-8 py-4 text-lg font-semibold sm:w-auto"
                 onClick={() => (window.location.href = "/sign-up")}
               >
-                Get Early Access - $150
+                Get Early Access - ${PRODUCT_PRICE}
               </PulseButton>
             </Link>
           </div>

@@ -1,55 +1,27 @@
 import { Polar } from "@polar-sh/sdk"
 import { eq } from "drizzle-orm"
 import { db } from "@/db/index"
-import { /* authSchema, */ businessSchema } from "@/db/schema"
+import { emailLogs, emailOrders, user } from "@/db/schema"
 
 export const polar = new Polar({
   accessToken: process.env.POLAR_ACCESS_TOKEN!,
   server: process.env.NODE_ENV === "production" ? "production" : "sandbox",
 })
 
-export async function createCheckoutSession(userId: string, userEmail: string) {
-  try {
-    const checkoutSession = await polar.checkouts.create({
-      customerBillingAddress: {
-        country: "US",
-      },
-      products: [process.env.POLAR_PRODUCT_ID!],
-      successUrl: `${process.env.NEXT_PUBLIC_APP_URL}/payment/success?checkout_id={CHECKOUT_ID}`,
-      externalCustomerId: userId,
-      metadata: {
-        userId,
-        userEmail,
-      },
-    })
-
-    return {
-      id: checkoutSession.id,
-      url: checkoutSession.url,
-      clientSecret: checkoutSession.clientSecret,
-      expiresAt: checkoutSession.expiresAt,
-    }
-  } catch (error) {
-    console.error("Failed to create checkout session:", error)
-    throw new Error("Payment session creation failed")
-  }
-}
-
 export async function handlePaymentSuccess(paymentId: string, userId: string) {
   try {
-    // Update user profile subscription status
+    // Note: Subscription status is now managed by Polar.sh SDK
+    // We only update the lastLogin to track activity
     await db
-      .update(businessSchema.userProfile)
+      .update(user)
       .set({
-        subscriptionStatus: "paid",
-        paymentDate: new Date(),
-        subscriptionExpiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
+        lastLogin: new Date(),
         updatedAt: new Date(),
       })
-      .where(eq(businessSchema.userProfile.userId, userId))
+      .where(eq(user.id, userId))
 
     // Create order record
-    await db.insert(businessSchema.emailOrders).values({
+    await db.insert(emailOrders).values({
       userId,
       status: "pending",
       paymentId,
@@ -66,7 +38,7 @@ export async function handlePaymentSuccess(paymentId: string, userId: string) {
 export async function handlePaymentFailure(paymentId: string, userId: string) {
   try {
     // Log the failed payment attempt
-    await db.insert(businessSchema.emailLogs).values({
+    await db.insert(emailLogs).values({
       userId,
       emailType: "payment_failed",
       recipientEmail: "", // Will be populated from user data
@@ -139,28 +111,21 @@ export async function syncSubscriptionStatus(userId: string, subscriptionId: str
   try {
     const subscription = await getSubscriptionStatus(subscriptionId)
 
-    let status = "inactive"
-    let expiresAt = null
-
-    if (subscription.status === "active") {
-      status = "paid"
-      expiresAt = new Date(subscription.currentPeriodEnd)
-    } else if (subscription.status === "canceled") {
-      status = "cancelled"
-    } else if (subscription.status === "past_due") {
-      status = "expired"
-    }
-
+    // Note: Subscription status is now managed via Polar.sh SDK
+    // We only update lastLogin to track user activity
     await db
-      .update(businessSchema.userProfile)
+      .update(user)
       .set({
-        subscriptionStatus: status,
-        subscriptionExpiresAt: expiresAt,
+        lastLogin: new Date(),
         updatedAt: new Date(),
       })
-      .where(eq(businessSchema.userProfile.userId, userId))
+      .where(eq(user.id, userId))
 
-    return { status, expiresAt }
+    // Return subscription data from Polar.sh instead of local DB
+    return {
+      status: subscription.status,
+      expiresAt: new Date(subscription.currentPeriodEnd),
+    }
   } catch (error) {
     console.error("Failed to sync subscription status:", error)
     throw new Error("Subscription sync failed")

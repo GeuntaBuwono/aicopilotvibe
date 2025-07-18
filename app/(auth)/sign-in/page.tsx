@@ -1,43 +1,12 @@
-"use client"
-
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { SignInForm } from "@/components/auth/sign-in-form"
 import { ParticleBackground } from "@/components/magic/particle-background"
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text"
 import { BlurFade } from "@/components/magicui/blur-fade"
 import { MagicCard } from "@/components/magicui/magic-card"
 import { ShineBorder } from "@/components/magicui/shine-border"
-import { Alert } from "@/components/ui/alert"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { signIn } from "@/lib/auth-client"
 
 export default function SignInPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setLoading(true)
-
-    try {
-      await signIn.email({
-        email,
-        password,
-      })
-      router.push("/dashboard")
-    } catch {
-      setError("Invalid email or password")
-    } finally {
-      setLoading(false)
-    }
-  }
-
   return (
     <div className="from-background via-background to-muted/20 relative min-h-screen bg-gradient-to-br">
       {/* Background effects */}
@@ -77,66 +46,7 @@ export default function SignInPage() {
           <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <ShineBorder className="p-0" shineColor={["#3b82f6", "#8b5cf6", "#3b82f6"]} duration={4}>
               <MagicCard className="p-8" gradientFrom="#3b82f6" gradientTo="#8b5cf6" gradientOpacity={0.05}>
-                <form className="space-y-6" onSubmit={handleSubmit}>
-                  {error && (
-                    <BlurFade delay={0.3}>
-                      <Alert variant="destructive" className="border-red-200 bg-red-50">
-                        <div className="text-sm text-red-700">{error}</div>
-                      </Alert>
-                    </BlurFade>
-                  )}
-
-                  <BlurFade delay={0.4}>
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-medium">
-                        Email address
-                      </Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your email"
-                        className="transition-all duration-300 focus:ring-2 focus:ring-blue-500/20"
-                      />
-                    </div>
-                  </BlurFade>
-
-                  <BlurFade delay={0.5}>
-                    <div className="space-y-2">
-                      <Label htmlFor="password" className="text-sm font-medium">
-                        Password
-                      </Label>
-                      <Input
-                        id="password"
-                        name="password"
-                        type="password"
-                        autoComplete="current-password"
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Enter your password"
-                        className="transition-all duration-300 focus:ring-2 focus:ring-blue-500/20"
-                      />
-                    </div>
-                  </BlurFade>
-
-                  <BlurFade delay={0.6}>
-                    <button
-                      type="submit"
-                      disabled={loading}
-                      className="relative w-full rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:from-blue-600 hover:to-purple-600 hover:shadow-xl active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
-                    >
-                      <span className="relative z-10">{loading ? "Signing in..." : "Sign In"}</span>
-                      {!loading && (
-                        <div className="absolute inset-0 animate-pulse rounded-lg bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 transition-opacity duration-500" />
-                      )}
-                    </button>
-                  </BlurFade>
-                </form>
+                <SignInForm />
 
                 <BlurFade delay={0.7}>
                   <div className="mt-8">

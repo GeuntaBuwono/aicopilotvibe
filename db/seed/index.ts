@@ -1,6 +1,6 @@
+import { hashPassword } from "better-auth/crypto"
 import { db } from "../index"
 import { authSchema, businessSchema } from "../schema"
-import { hash } from "bcryptjs"
 
 async function seedDatabase() {
   console.log("🌱 Seeding database...")
@@ -23,9 +23,9 @@ async function seedDatabase() {
       subscriptionExpiresAt?: Date
     }
   ) => {
-    const hashedPassword = await hash(userData.password, 12)
+    const hashedPassword = await hashPassword(userData.password)
 
-    // Create user
+    // Create user with consolidated profile fields
     const users = await db
       .insert(authSchema.user)
       .values({
@@ -33,6 +33,10 @@ async function seedDatabase() {
         name: userData.name,
         email: userData.email,
         emailVerified: profileData.emailVerified ?? true,
+        role: profileData.role,
+        enterpriseEmail: profileData.enterpriseEmail,
+        enterprisePassword: profileData.enterprisePassword,
+        countryCode: profileData.countryCode,
         createdAt: new Date(),
         updatedAt: new Date(),
       })
@@ -50,20 +54,6 @@ async function seedDatabase() {
       providerId: "credential",
       userId: user.id,
       password: hashedPassword,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    })
-
-    // Create user profile
-    await db.insert(businessSchema.userProfile).values({
-      userId: user.id,
-      role: profileData.role,
-      subscriptionStatus: profileData.subscriptionStatus,
-      enterpriseEmail: profileData.enterpriseEmail,
-      enterprisePassword: profileData.enterprisePassword,
-      countryCode: profileData.countryCode,
-      paymentDate: profileData.paymentDate,
-      subscriptionExpiresAt: profileData.subscriptionExpiresAt,
       createdAt: new Date(),
       updatedAt: new Date(),
     })
