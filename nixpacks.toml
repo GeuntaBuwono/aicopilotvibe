@@ -4,7 +4,6 @@ nixPkgs = ['nodejs', 'pnpm']
 aptPkgs = ['build-essential', 'curl', 'gnupg']
 nixpkgsArchive = "nixos-25.05"  # or specific commit from that channel
 
-
 [phases.install]
 cmds = [
     # 1. Install the Doppler CLI first
@@ -16,13 +15,7 @@ cmds = [
 ]
 
 [phases.build]
-cmds = [
-    # Verify Doppler is working by printing environment variables
-    "echo '--- Doppler Environment Variables ---'",
-    "doppler run -- printenv | grep -E '^(BETTER_AUTH_|DATABASE_URL|POLAR_|NEXT_PUBLIC_|RESEND_)' | head -10",
-    "echo '--- Running pnpm build ---'",
-    "doppler run -- pnpm run build"
-]
+cmds = ["doppler run -- pnpm run build"]
 
 [start]
 # 3. Prefix your start command with 'doppler run --'
