@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env FORCE_COLOR=1 BUILD_DIR=.next-dev next dev --turbo",
+    "doppler:setup:dev": "doppler setup -p aicopilotvibe -c dev_personal; doppler run --",
+    "dev": "pnpm doppler:setup:dev cross-env FORCE_COLOR=1 BUILD_DIR=.next-dev next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
