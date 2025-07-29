@@ -13,7 +13,7 @@ cmds = [
 ]
 
 [phases.build]
-cmds = ["pnpm run build"]
+cmds = ["doppler run -- pnpm run build"]
 
 [start]
 # 3. Prefix your start command with 'doppler run --'
