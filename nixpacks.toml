@@ -2,7 +2,7 @@
 nixPkgs = ['nodejs', 'pnpm']
 # Added curl and gnupg, required for the Doppler install script
 aptPkgs = ['build-essential', 'curl', 'gnupg']
-nixpkgsArchive = 'f69ae4816bc1b501460ad2c0c63ed0cc4a9b876e'
+nixpkgsArchive = '84d981bae8b5e783b3b548de505b22880559515f'
 
 [phases.install]
 cmds = [
