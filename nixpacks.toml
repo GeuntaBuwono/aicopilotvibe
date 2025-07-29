@@ -2,13 +2,15 @@
 nixPkgs = ['nodejs', 'pnpm']
 # Added curl and gnupg, required for the Doppler install script
 aptPkgs = ['build-essential', 'curl', 'gnupg']
-nixpkgsArchive = '84d981bae8b5e783b3b548de505b22880559515f'
+nixpkgsArchive = "nixos-25.05"  # or specific commit from that channel
 
 [phases.install]
 cmds = [
     # 1. Install the Doppler CLI first
     "(curl -Ls --tlsv1.2 --proto '=https' --retry 3 'https://cli.doppler.com/install.sh' || wget -t 3 -qO- 'https://cli.doppler.com/install.sh') | sh",
     # 2. Run your pnpm install. --frozen-lockfile is best practice for deployments.
+    "corepack enable",
+    "corepack prepare pnpm@10.13.1 --activate",
     "pnpm install --frozen-lockfile"
 ]
 
