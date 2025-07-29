@@ -15,7 +15,7 @@ cmds = [
 ]
 
 [phases.build]
-cmds = ["doppler run -- pnpm run build"]
+cmds = ["SKIP_ENV_VALIDATION=true pnpm run build"]
 
 [start]
 # 3. Prefix your start command with 'doppler run --'
