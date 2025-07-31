@@ -39,5 +39,5 @@ drizzle
 
 .env
 
-.next-dev
-.next-dev/*
+.next*
+tsconfig.tsbuildinfo

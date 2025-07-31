@@ -1,0 +1,11 @@
+onlyBuiltDependencies:
+  - '@swc/core'
+  - '@tailwindcss/oxide'
+  - core-js
+  - core-js-pure
+  - esbuild
+  - msw
+  - postinstall-postinstall
+  - protobufjs
+  - sharp
+  - unrs-resolver

@@ -131,9 +131,8 @@
 
 // UI Component Libraries - ❌ TO BE IMPLEMENTED
 - shadcn/ui (Primary component system)
-- reactbits.dev (Specialized components)
-- hover.dev (Animation components)
 - magicui.design (Magic UI effects)
+- Custom animation components
 
 // Styling & Design - ✅ IMPLEMENTED
 - Tailwind CSS v4.1.5
@@ -193,8 +192,7 @@ project-root/
 │   └── page.tsx                 # Landing page
 ├── components/
 │   ├── ui/                      # shadcn/ui components
-│   ├── reactbits/               # ReactBits components
-│   ├── animations/              # Hover.dev effects
+│   ├── animations/              # Custom animation effects
 │   ├── magic/                   # MagicUI components
 │   ├── auth/                    # Authentication components
 │   ├── dashboard/               # Dashboard components
@@ -452,7 +450,6 @@ DATABASE_URL="postgresql://postgres:password@localhost:5432/aicopilotvibe_dev"
 
 # Authentication
 BETTER_AUTH_SECRET="dev-secret-key-min-32-chars-long"
-BETTER_AUTH_URL="http://localhost:3000"
 
 # Admin Authentication
 ADMIN_AUTH_SECRET="admin-dev-secret-key-min-32-chars"
@@ -603,9 +600,8 @@ pnpm install \
 
 # UI Component Libraries (Phase 0 setup)
 # shadcn/ui - Primary component system
-# reactbits.dev - Specialized components
-# hover.dev - Animation components
 # magicui.design - Magic UI effects
+# Custom animation components
 
 # Verify installation
 pnpm list better-auth drizzle-orm postgres resend
