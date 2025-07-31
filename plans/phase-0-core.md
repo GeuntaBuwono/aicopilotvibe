@@ -1114,7 +1114,6 @@ DATABASE_URL="postgresql://user:password@localhost:5432/aicopilotvibe_dev"
 
 # Authentication (Unified system for users and admins)
 BETTER_AUTH_SECRET="your-super-secret-key-at-least-32-chars"
-BETTER_AUTH_URL="http://localhost:3000"
 
 # Payments
 POLAR_SECRET_KEY="polar_sk_test_xxxxx"
@@ -1232,7 +1231,6 @@ pnpm run db:reset
 ```bash
 # Session not working
 # Check BETTER_AUTH_SECRET length (must be 32+ chars)
-# Verify BETTER_AUTH_URL matches your domain
 ```
 
 ### **Payment Issues**

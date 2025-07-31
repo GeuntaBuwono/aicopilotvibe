@@ -450,7 +450,6 @@ DATABASE_URL="postgresql://postgres:password@localhost:5432/aicopilotvibe_dev"
 
 # Authentication
 BETTER_AUTH_SECRET="dev-secret-key-min-32-chars-long"
-BETTER_AUTH_URL="http://localhost:3000"
 
 # Admin Authentication
 ADMIN_AUTH_SECRET="admin-dev-secret-key-min-32-chars"

@@ -163,7 +163,6 @@ DATABASE_URL="postgresql://..."
 
 # Authentication
 BETTER_AUTH_SECRET="your-secret-key"
-BETTER_AUTH_URL="http://localhost:3000"
 
 # Payments
 POLAR_SECRET_KEY="polar_sk_..."
