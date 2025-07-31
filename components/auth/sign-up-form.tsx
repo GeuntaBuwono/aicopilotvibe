@@ -5,7 +5,6 @@ import { useAction } from "next-safe-action/hooks"
 import { useForm } from "react-hook-form"
 import type { z } from "zod"
 import { BlurFade } from "@/components/magicui/blur-fade"
-import { Alert } from "@/components/ui/alert"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { signUpAction } from "@/lib/auth-actions"
@@ -34,9 +33,7 @@ export function SignUpForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {errorMessage && (
         <BlurFade delay={0.3}>
-          <Alert variant="destructive" className="border-red-200 bg-red-50">
-            <div className="text-sm text-red-700">{errorMessage}</div>
-          </Alert>
+          <div className="text-sm text-red-700">{errorMessage}</div>
         </BlurFade>
       )}
 
@@ -86,6 +83,24 @@ export function SignUpForm() {
             placeholder="Choose a strong password"
             className="transition-all duration-300 focus:ring-2 focus:ring-blue-500/20"
             {...register("password")}
+          />
+          {errors.password && <p className="text-sm text-red-600">{errors.password.message}</p>}
+          <p className="text-muted-foreground mt-1 text-xs">Password must be at least 8 characters long</p>
+        </div>
+      </BlurFade>
+
+      <BlurFade delay={0.6}>
+        <div className="space-y-2">
+          <Label htmlFor="confirm-password" className="text-sm font-medium">
+            Confirm Password
+          </Label>
+          <Input
+            id="confirm-password"
+            type="password"
+            autoComplete="new-password"
+            placeholder="Choose a strong password"
+            className="transition-all duration-300 focus:ring-2 focus:ring-blue-500/20"
+            {...register("confirmPassword")}
           />
           {errors.password && <p className="text-sm text-red-600">{errors.password.message}</p>}
           <p className="text-muted-foreground mt-1 text-xs">Password must be at least 8 characters long</p>

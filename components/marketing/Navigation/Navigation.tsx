@@ -23,48 +23,60 @@ export function Navigation() {
             {/* Enhanced Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                <ButtonHover
-                  variant="lift"
-                  className="text-foreground rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
-                >
-                  <Link href="#features">Features</Link>
-                </ButtonHover>
-                <ButtonHover
-                  variant="lift"
-                  className="text-foreground rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
-                >
-                  <Link href="#pricing">Pricing</Link>
-                </ButtonHover>
-                <ButtonHover
-                  variant="lift"
-                  className="text-foreground rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
-                >
-                  <Link href="#comparison">Comparison</Link>
-                </ButtonHover>
-                <ButtonHover
-                  variant="lift"
-                  className="text-foreground rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
-                >
-                  <Link href="#faq">FAQ</Link>
-                </ButtonHover>
+                <Link href="#features">
+                  <ButtonHover
+                    variant="lift"
+                    className="text-foreground rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
+                  >
+                    Features
+                  </ButtonHover>
+                </Link>
+                <Link href="#pricing">
+                  <ButtonHover
+                    variant="lift"
+                    className="text-foreground rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
+                  >
+                    Pricing
+                  </ButtonHover>
+                </Link>
+                <Link href="#comparison">
+                  <ButtonHover
+                    variant="lift"
+                    className="text-foreground rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
+                  >
+                    Comparison
+                  </ButtonHover>
+                </Link>
+                <Link href="#faq">
+                  <ButtonHover
+                    variant="lift"
+                    className="text-foreground rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
+                  >
+                    FAQ
+                  </ButtonHover>
+                </Link>
               </div>
             </div>
 
             {/* Enhanced Desktop Auth Buttons */}
             <div className="hidden md:block">
               <div className="ml-4 flex items-center space-x-4">
-                <ButtonHover
-                  variant="glow"
-                  className="border-border text-foreground rounded-lg border px-4 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
-                >
-                  <Link href="/sign-in">Sign In</Link>
-                </ButtonHover>
-                <ButtonHover
-                  variant="glow"
-                  className="rounded-lg bg-gradient-to-r px-4 py-2 text-sm font-medium transition-all duration-300"
-                >
-                  <Link href="/sign-up">Get Started</Link>
-                </ButtonHover>
+                <Link href="/sign-in">
+                  <ButtonHover
+                    variant="glow"
+                    className="border-border text-foreground rounded-lg border px-4 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
+                  >
+                    Sign In
+                  </ButtonHover>
+                </Link>
+                <Link href="/sign-up">
+                  <ButtonHover
+                    variant="glow"
+                    className="rounded-lg bg-gradient-to-r px-4 py-2 text-sm font-medium transition-all duration-300"
+                  >
+                    Get Started
+                  </ButtonHover>
+                </Link>
               </div>
             </div>
 
@@ -135,22 +147,22 @@ export function Navigation() {
               </Link>
               <div className="border-border/50 border-t pt-4 pb-3">
                 <div className="space-y-3 px-3">
-                  <ButtonHover
-                    variant="glow"
-                    className="border-border text-foreground w-full rounded-lg border py-2 text-sm font-medium transition-all duration-300 hover:text-white"
-                  >
-                    <Link href="/sign-in" className="block w-full">
+                  <Link href="/sign-in" className="block w-full">
+                    <ButtonHover
+                      variant="glow"
+                      className="border-border text-foreground w-full rounded-lg border py-2 text-sm font-medium transition-all duration-300 hover:text-white"
+                    >
                       Sign In
-                    </Link>
-                  </ButtonHover>
-                  <ButtonHover
-                    variant="gradient"
-                    className="w-full rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 py-2 text-sm font-medium text-white transition-all duration-300 hover:from-blue-600 hover:to-purple-700"
-                  >
-                    <Link href="/sign-up" className="block w-full">
+                    </ButtonHover>
+                  </Link>
+                  <Link href="/sign-up" className="block w-full">
+                    <ButtonHover
+                      variant="gradient"
+                      className="w-full rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 py-2 text-sm font-medium text-white transition-all duration-300 hover:from-blue-600 hover:to-purple-700"
+                    >
                       Get Started
-                    </Link>
-                  </ButtonHover>
+                    </ButtonHover>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -38,10 +38,6 @@ export const auth = betterAuth({
         type: "string",
         defaultValue: "user",
       },
-      subscriptionStatus: {
-        type: "string",
-        defaultValue: "inactive",
-      },
     },
   },
   plugins: [
@@ -105,7 +101,9 @@ export function canAssignOrders(user: User): boolean {
 }
 
 export function hasActiveSubscription(user: User): boolean {
-  return user.subscriptionStatus === "paid" || user.subscriptionStatus === "active"
+  // TODO: Check subscription status via Polar.sh API or active orders
+  // For now, always return true for admin users and false for regular users
+  return isAdmin(user)
 }
 
 export function canAccessCopilot(user: User): boolean {

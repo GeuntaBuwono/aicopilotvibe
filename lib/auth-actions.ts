@@ -47,7 +47,7 @@ export const signInAction = actionClient
   })
 
 export const signUpAction = actionClient
-  .schema(signUpSchema)
+  .inputSchema(signUpSchema)
   .action(async ({ parsedInput: { email, password, name } }) => {
     try {
       const result = await auth.api.signUpEmail({

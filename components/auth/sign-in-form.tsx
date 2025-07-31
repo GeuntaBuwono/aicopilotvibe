@@ -5,7 +5,6 @@ import { useAction } from "next-safe-action/hooks"
 import { useForm } from "react-hook-form"
 import type { z } from "zod"
 import { BlurFade } from "@/components/magicui/blur-fade"
-import { Alert } from "@/components/ui/alert"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { signInAction } from "@/lib/auth-actions"
@@ -34,9 +33,7 @@ export function SignInForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {errorMessage && (
         <BlurFade delay={0.3}>
-          <Alert variant="destructive" className="border-red-200 bg-red-50">
-            <div className="text-sm text-red-700">{errorMessage}</div>
-          </Alert>
+          <div className="text-sm text-red-700">{errorMessage}</div>
         </BlurFade>
       )}
 

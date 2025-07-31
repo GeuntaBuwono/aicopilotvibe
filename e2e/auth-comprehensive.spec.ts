@@ -65,8 +65,7 @@ const mockServer = setupServer(
   http.get("/api/user/profile", () => {
     return HttpResponse.json({
       profile: {
-        enterpriseEmail: "test@github-enterprise.com",
-        subscriptionStatus: "active"
+        enterpriseEmail: "test@github-enterprise.com"
       }
     })
   })
